@@ -4,9 +4,9 @@ import '../../classes/cheak_is_not_null_value/cheak_is_not_null_value.dart';
 import '../../database/networking/add_library/add_library.dart';
 import 'states.dart';
 
-class AddNewLibCubit extends Cubit<AddNewLibState> {
-  AddNewLibCubit() : super(AddNewLibInitial());
-  void addNewLib({
+class AddLibraryCubit extends Cubit<AddNewLibState> {
+  AddLibraryCubit() : super(AddNewLibInitial());
+  void addLibrary({
     required String? name,
     required String? image,
     required String? gitHubUrl,
@@ -25,13 +25,13 @@ class AddNewLibCubit extends Cubit<AddNewLibState> {
       emit(AddTypeErrorState());
     } else {
       emit(AddNewLoadingState());
-      await addLibrary(
+      addNewLibrary(
         name: name,
         image: image,
         gitHubUrl: gitHubUrl,
         pubDevUrl: pubDevUrl,
         type: type,
-      ).then((_) {
+      ).then((value) {
         emit(AddNewSucssesState());
       });
     }

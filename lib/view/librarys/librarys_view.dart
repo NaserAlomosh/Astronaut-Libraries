@@ -1,3 +1,5 @@
+import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
+import 'package:astronaut_libraries/view/add_library/add_library_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,8 +37,15 @@ class LibrarysView extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pop();
                       },
-                      child: Lottie.asset(
-                        'assets/back_icon.json',
+                      child: Stack(
+                        children: [
+                          Lottie.asset(
+                            'assets/back_icon.json',
+                          ),
+                          Container(
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                        ],
                       )),
                 ),
                 actions: [
@@ -44,8 +53,18 @@ class LibrarysView extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                     child: InkWell(
                         borderRadius: BorderRadius.circular(30.w),
-                        onTap: () {},
-                        child: Lottie.asset('assets/add_icon.json')),
+                        onTap: () {
+                          AppNavigation().animatedNavigatoin(
+                              context, AddLibraryView(widgetName: widgetName));
+                        },
+                        child: Stack(
+                          children: [
+                            Lottie.asset('assets/add_icon.json'),
+                            Container(
+                              color: Colors.black.withOpacity(0.4),
+                            ),
+                          ],
+                        )),
                   ),
                 ],
               ),
@@ -59,7 +78,9 @@ class LibrarysView extends StatelessWidget {
                     );
                   } else {
                     return builderLibrarysWidget(
-                        context, context.read<GetLibraryCubit>().librarys);
+                      context,
+                      context.read<GetLibraryCubit>().librarys,
+                    );
                   }
                 },
               ),
@@ -83,25 +104,22 @@ Widget builderLibrarysWidget(
           mainAxisSpacing: 1,
           crossAxisCount: 2,
           children: librarys
-              .map((e) => Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.1),
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Image.network(
-                            e.image.toString(),
+              .map((e) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.1),
+                      ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            title: Text(e.name.toString()),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: SizedBox(
-                            child: Text(e.name.toString()),
+                          const Divider(
+                            color: Colors.grey,
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
                   ))
               .toList(),

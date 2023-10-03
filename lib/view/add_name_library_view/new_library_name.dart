@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/widget/custom_text_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -131,32 +132,16 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                             obscureText: true,
                           ),
                           SizedBox(height: 20.h),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: Colors.white10,
-                                  borderRadius: BorderRadius.circular(10.w)),
-                              child: TextButton(
-                                onPressed: () async {
-                                  await context
-                                      .read<AddNameLibraryCubit>()
-                                      .addName(
-                                          type: nameLibraryController.text,
-                                          confirmtype:
-                                              confirmNameLibraryController.text,
-                                          adminPassword:
-                                              adminPasswordLibraryController
-                                                  .text);
-                                },
-                                child: Text(
-                                  'Create',
-                                  style: TextStyle(
-                                      color: Colors.white.withOpacity(0.8)),
-                                ),
-                              ),
-                            ),
+                          CustomTextButton(
+                            label: 'Create',
+                            onPressed: () async {
+                              await context.read<AddNameLibraryCubit>().addName(
+                                  type: nameLibraryController.text,
+                                  confirmtype:
+                                      confirmNameLibraryController.text,
+                                  adminPassword:
+                                      adminPasswordLibraryController.text);
+                            },
                           ),
                         ],
                       ),

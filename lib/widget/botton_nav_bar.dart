@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/view/add_library/add_library_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -7,7 +8,6 @@ import '../constant/string/app_string_en.dart';
 import '../style/color_app.dart';
 import '../view/account/account.dart';
 import '../view/home/home.dart';
-import '../view/search.dart';
 import '../view/shopping_cart.dart';
 
 class CustomGoogleNavBar extends StatefulWidget {
@@ -25,7 +25,7 @@ class _CustomGoogleNavBarState extends State<CustomGoogleNavBar> {
       child: Scaffold(
         body: const [
           HomeView(),
-          SearchView(),
+          ShoppingCart(),
           AccountView(),
           ShoppingCart(),
         ][selectedIndex],

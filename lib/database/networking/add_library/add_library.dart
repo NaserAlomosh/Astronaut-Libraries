@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> addLibrary({
+Future<bool> addNewLibrary({
   required String? name,
   required String? image,
   required String? gitHubUrl,
@@ -18,6 +18,9 @@ Future<void> addLibrary({
       'pubDevUrl': pubDevUrl,
       'type': type,
       'id': doc.id,
+    }).then((_) {
+      return true;
     });
   });
+  return false;
 }

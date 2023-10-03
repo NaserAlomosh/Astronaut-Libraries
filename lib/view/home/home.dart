@@ -65,7 +65,9 @@ class _HomeViewState extends State<HomeView> {
                                   trailing: InkWell(
                                 onTap: () {
                                   AppNavigation().animatedNavigatoin(
-                                      context, const AddNameLibraryView());
+                                    context,
+                                    const AddNameLibraryView(),
+                                  );
                                 },
                                 child: const Icon(
                                   Icons.add,
