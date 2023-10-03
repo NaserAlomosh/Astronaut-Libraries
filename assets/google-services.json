@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "16818078429",
+    "project_id": "astronaut-libraries",
+    "storage_bucket": "astronaut-libraries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16818078429:android:d602607f52a73813305134",
+        "android_client_info": {
+          "package_name": "com.example.astronaut_libraries"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwMMhHPhTF_RdP8wu2la9oWMn_e1mPDik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
