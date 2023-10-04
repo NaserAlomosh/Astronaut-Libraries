@@ -62,33 +62,35 @@ class _HomeViewState extends State<HomeView> {
                                 width: double.infinity,
                               ),
                               ListTile(
-                                  trailing: InkWell(
-                                onTap: () {
-                                  AppNavigation().animatedNavigatoin(
-                                    context,
-                                    const AddNameLibraryView(),
-                                  );
-                                },
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Colors.white,
+                                trailing: InkWell(
+                                  onTap: () {
+                                    AppNavigation().navigatoinPush(
+                                      context,
+                                      const AddNameLibraryView(),
+                                    );
+                                  },
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              )),
+                              ),
                               SizedBox(
                                 height: 500,
                                 child: ListView.builder(
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                       onTap: () {
-                                        AppNavigation().animatedNavigatoin(
-                                            context,
-                                            LibrarysView(
-                                              widgetName: context
-                                                  .read<GetNameLibraryCubit>()
-                                                  .nameLibrarys[index]
-                                                  .type
-                                                  .toString(),
-                                            ));
+                                        AppNavigation().navigatoinPush(
+                                          context,
+                                          LibrarysView(
+                                            widgetName: context
+                                                .read<GetNameLibraryCubit>()
+                                                .nameLibrarys[index]
+                                                .type
+                                                .toString(),
+                                          ),
+                                        );
                                       },
                                       trailing: Icon(Icons.arrow_forward_ios,
                                           color: Colors.white.withOpacity(0.8)),

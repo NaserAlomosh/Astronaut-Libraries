@@ -1,19 +1,19 @@
-abstract class AddNewLibState {}
+abstract class AddLibraryState {}
 
-final class AddNewLibInitial extends AddNewLibState {}
+final class AddLibraryInitial extends AddLibraryState {}
 
-final class AddNewLoadingState extends AddNewLibState {}
+final class AddLibraryLoadingState extends AddLibraryState {}
 
-final class AddNewSucssesState extends AddNewLibState {}
+final class AddLibrarySucssesState extends AddLibraryState {}
 
-final class AddNewErrorState extends AddNewLibState {}
+final class AddLibraryErrorState extends AddLibraryState {}
 
-final class AddNameErrorState extends AddNewLibState {}
+final class AddLibraryNameErrorState extends AddLibraryState {}
 
-final class AddImageErrorState extends AddNewLibState {}
+final class AddImageErrorState extends AddLibraryState {}
 
-final class AddgitHubUrlErrorState extends AddNewLibState {}
+final class AddGitHubUrlErrorState extends AddLibraryState {}
 
-final class AddpubDevUrlErrorState extends AddNewLibState {}
+final class AddpubDevUrlErrorState extends AddLibraryState {}
 
-final class AddTypeErrorState extends AddNewLibState {}
+final class AddTypeErrorState extends AddLibraryState {}

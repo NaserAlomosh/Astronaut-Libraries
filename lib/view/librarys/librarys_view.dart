@@ -52,19 +52,20 @@ class LibrarysView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: InkWell(
-                        borderRadius: BorderRadius.circular(30.w),
-                        onTap: () {
-                          AppNavigation().animatedNavigatoin(
-                              context, AddLibraryView(widgetName: widgetName));
-                        },
-                        child: Stack(
-                          children: [
-                            Lottie.asset('assets/add_icon.json'),
-                            Container(
-                              color: Colors.black.withOpacity(0.4),
-                            ),
-                          ],
-                        )),
+                      borderRadius: BorderRadius.circular(30.w),
+                      onTap: () {
+                        AppNavigation().navigatoinPush(
+                            context, AddLibraryView(widgetName: widgetName));
+                      },
+                      child: Stack(
+                        children: [
+                          Lottie.asset('assets/add_icon.json'),
+                          Container(
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -1,19 +1,25 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 Future<bool> addNewLibrary({
   required String? name,
-  required String? image,
+  required File? image,
   required String? gitHubUrl,
   required String? pubDevUrl,
   required String? type,
 }) async {
   //
+  var refStoreg = FirebaseStorage.instance.ref("images/$image");
+  await refStoreg.putFile(image!);
+  String url = await refStoreg.getDownloadURL();
   await FirebaseFirestore.instance
       .collection(type!)
       .add({}).then((DocumentReference doc) async {
     await FirebaseFirestore.instance.collection(type).doc(doc.id).set({
       'name': name,
-      'image': image,
+      'image': url,
       'gitHubUrl': gitHubUrl,
       'pubDevUrl': pubDevUrl,
       'type': type,

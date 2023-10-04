@@ -72,7 +72,7 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                 listener: (context, state) {
                   if (state is AddNameSucssesState) {
                     AppNavigation()
-                        .animatedNavigatoin(context, const HomeView());
+                        .navigatoinPushReplacement(context, const HomeView());
                   }
                 },
                 builder: (context, state) {
