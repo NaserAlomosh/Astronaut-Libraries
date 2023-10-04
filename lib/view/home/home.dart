@@ -52,7 +52,6 @@ class _HomeViewState extends State<HomeView> {
                         width: 180.w,
                         backgroundColor: Colors.black.withOpacity(0.4),
                         shadowColor: Colors.black.withOpacity(0.4),
-                        surfaceTintColor: Colors.amber,
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
@@ -89,6 +88,7 @@ class _HomeViewState extends State<HomeView> {
                                                 .nameLibrarys[index]
                                                 .type
                                                 .toString(),
+                                            added: false,
                                           ),
                                         );
                                       },

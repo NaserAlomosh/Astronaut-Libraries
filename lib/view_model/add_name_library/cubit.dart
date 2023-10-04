@@ -10,6 +10,7 @@ import 'states.dart';
 class AddNameLibraryCubit extends Cubit<AddNameLibraryState> {
   AddNameLibraryCubit() : super(AddNameLibraryInitial());
   bool confirmNameWidgetCheak = true;
+  String? typeWidget;
   Future<void> addName(
       {String? type, String? confirmtype, String? adminPassword}) async {
     emit(AddNameLoadingState());
@@ -23,6 +24,7 @@ class AddNameLibraryCubit extends Cubit<AddNameLibraryState> {
         if (adminPassword == ADMIN_PASSWORD) {
           await addNameLibrary(type).then((value) async {
             await getLibraryName();
+            type = typeWidget;
             emit(AddNameSucssesState());
           });
         } else {

@@ -14,7 +14,7 @@ class AppNavigation {
   }
 
   navigatoinPushReplacement(BuildContext context, Widget screen) {
-    Navigator.pushReplacement(
+    Navigator.pushAndRemoveUntil(
       context,
       PageRouteBuilder(
         pageBuilder: (_, __, ___) => screen,
@@ -22,6 +22,7 @@ class AppNavigation {
         transitionsBuilder: (_, a, __, c) =>
             FadeTransition(opacity: a, child: c),
       ),
+      (Route<dynamic> route) => false,
     );
   }
 }

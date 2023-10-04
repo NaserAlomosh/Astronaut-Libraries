@@ -19,6 +19,7 @@ class CustemHomeWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.w),
         onTap: onTap,
         child: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.w),
               color: Colors.black.withOpacity(0.4)),

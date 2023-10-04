@@ -10,10 +10,14 @@ final class AddLibraryErrorState extends AddLibraryState {}
 
 final class AddLibraryNameErrorState extends AddLibraryState {}
 
+final class AddLibraryConfirmNameErrorState extends AddLibraryState {}
+
 final class AddImageErrorState extends AddLibraryState {}
 
 final class AddGitHubUrlErrorState extends AddLibraryState {}
 
-final class AddpubDevUrlErrorState extends AddLibraryState {}
+final class AddPubDevUrlErrorState extends AddLibraryState {}
 
 final class AddTypeErrorState extends AddLibraryState {}
+
+final class SelectedImageSucsses extends AddLibraryState {}

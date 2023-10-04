@@ -136,11 +136,12 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                             label: 'Create',
                             onPressed: () async {
                               await context.read<AddNameLibraryCubit>().addName(
-                                  type: nameLibraryController.text,
-                                  confirmtype:
-                                      confirmNameLibraryController.text,
-                                  adminPassword:
-                                      adminPasswordLibraryController.text);
+                                    type: nameLibraryController.text,
+                                    confirmtype:
+                                        confirmNameLibraryController.text,
+                                    adminPassword:
+                                        adminPasswordLibraryController.text,
+                                  );
                             },
                           ),
                         ],

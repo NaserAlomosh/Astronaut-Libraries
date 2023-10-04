@@ -1,5 +1,6 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/view/home/home.dart';
+
+import 'package:astronaut_libraries/view/librarys/librarys_view.dart';
 import 'package:astronaut_libraries/view_model/add_library_lib/cubit.dart';
 import 'package:astronaut_libraries/view_model/add_library_lib/states.dart';
 import 'package:astronaut_libraries/widget/custom_text_buttom.dart';
@@ -61,8 +62,13 @@ class _AddLibraryViewState extends State<AddLibraryView> {
             BlocConsumer<AddLibraryCubit, AddLibraryState>(
               listener: (context, state) {
                 if (state is AddLibrarySucssesState) {
-                  AppNavigation()
-                      .navigatoinPushReplacement(context, const HomeView());
+                  AppNavigation().navigatoinPushReplacement(
+                    context,
+                    LibrarysView(
+                      added: true,
+                      widgetName: widget.widgetName,
+                    ),
+                  );
                 }
               },
               builder: (context, state) {
@@ -206,10 +212,13 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                           CustomTextButton(
                             onPressed: () {
                               context.read<AddLibraryCubit>().addLibrary(
-                                  name: 'lipraryNameController.text',
-                                  gitHubUrl: 'gitHubUrl',
-                                  pubDevUrl: 'pubDevUrl',
-                                  type: widget.widgetName);
+                                    name: lipraryNameController!.text,
+                                    confirmName:
+                                        confirmlipraryNameController!.text,
+                                    gitHubUrl: githubUrlController!.text,
+                                    pubDevUrl: pubDevUrlController!.text,
+                                    type: widget.widgetName,
+                                  );
                             },
                             label: 'Create',
                           ),
