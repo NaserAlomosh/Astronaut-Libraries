@@ -10,12 +10,15 @@ class LibraryDetails extends StatelessWidget {
   final String gitHubUrl;
 
   final String pubDevUrl;
+
+  final String description;
   const LibraryDetails({
     super.key,
     required this.image,
     required this.libraryName,
     required this.gitHubUrl,
     required this.pubDevUrl,
+    required this.description,
   });
 
   @override
@@ -33,6 +36,7 @@ class LibraryDetails extends StatelessWidget {
           gitHubUrl: gitHubUrl,
           libraryName: libraryName,
           image: image,
+          description: description,
         )
       ],
     );

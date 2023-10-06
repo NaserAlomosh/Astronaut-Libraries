@@ -9,7 +9,7 @@ import 'package:lottie/lottie.dart';
 import '../../model/library/library.dart';
 import '../../view_model/library/cubit.dart';
 import '../../view_model/library/states.dart';
-import '../library_de/library_details.dart';
+import '../library_details/library_details.dart';
 
 class LibrarysView extends StatefulWidget {
   final String widgetName;
@@ -117,44 +117,47 @@ Widget builderLibrarysWidget(
     mainAxisSpacing: 1,
     crossAxisCount: 2,
     children: librarys
-        .map((e) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  AppNavigation().navigatoinPush(
-                    context,
-                    LibraryDetails(
-                      pubDevUrl: e.pubDevUrl.toString(),
-                      image: e.image.toString(),
-                      libraryName: e.name.toString(),
-                      gitHubUrl: e.gitHubUrl.toString(),
-                    ),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Opacity(
-                        opacity: 0.6,
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey.withOpacity(0.2),
-                          ),
-                          child: Image.network(
-                            e.image.toString(),
-                            fit: BoxFit.cover,
-                          ),
+        .map(
+          (e) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                AppNavigation().navigatoinPush(
+                  context,
+                  LibraryDetails(
+                    description: e.description.toString(),
+                    pubDevUrl: e.pubDevUrl.toString(),
+                    image: e.image.toString(),
+                    libraryName: e.name.toString(),
+                    gitHubUrl: e.gitHubUrl.toString(),
+                  ),
+                );
+              },
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Opacity(
+                      opacity: 0.6,
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey.withOpacity(0.2),
+                        ),
+                        child: Image.network(
+                          e.image.toString(),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    Expanded(flex: 1, child: Text(e.name.toString()))
-                  ],
-                ),
+                  ),
+                  Expanded(flex: 1, child: Text(e.name.toString()))
+                ],
               ),
-            ))
+            ),
+          ),
+        )
         .toList(),
   );
 }

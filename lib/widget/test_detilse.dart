@@ -5,12 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailPage extends StatelessWidget {
   final String image;
-
   final String libraryName;
-
   final String gitHubUrl;
-
   final String pubDevUrl;
+
+  final String description;
 
   const DetailPage({
     Key? key,
@@ -18,6 +17,7 @@ class DetailPage extends StatelessWidget {
     required this.libraryName,
     required this.gitHubUrl,
     required this.pubDevUrl,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -37,18 +37,17 @@ class DetailPage extends StatelessWidget {
                 children: [
                   Text.rich(
                     TextSpan(
-                      style: TextStyle(
-                        fontSize: 26.sp,
-                      ),
+                      style: TextStyle(fontSize: 26.sp),
                       children: [
-                        TextSpan(
-                          text: libraryName,
-                        ),
+                        TextSpan(text: libraryName),
                         WidgetSpan(
                           child: IconButton(
                             onPressed: () async {
                               await Clipboard.setData(
-                                  ClipboardData(text: libraryName));
+                                ClipboardData(
+                                  text: libraryName,
+                                ),
+                              );
                             },
                             icon: Icon(
                               Icons.copy,
@@ -57,19 +56,32 @@ class DetailPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
+
+                        //
                       ],
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: SizedBox(
-                      child: Image.network(
-                        image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  SizedBox(height: 20.h),
+                  Text.rich(
+                    TextSpan(style: TextStyle(fontSize: 18.sp), children: [
+                      TextSpan(text: description),
+                    ]),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: SizedBox(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    child: Image.network(
+                      image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
             ),
             Column(

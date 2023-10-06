@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/view/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -147,7 +148,9 @@ Widget builderHomeWidget(BuildContext context) {
             CustemHomeWidget(
               lable: 'Profile',
               icon: Icons.person,
-              onTap: () {},
+              onTap: () {
+                AppNavigation().navigatoinPush(context, const ProfileView());
+              },
             ),
             CustemHomeWidget(
               lable: 'Favorite',

@@ -10,8 +10,4 @@ final class AddNameTypeErrorState extends AddNameLibraryState {}
 
 final class AddNameTybeIsExistsState extends AddNameLibraryState {}
 
-final class AddNameErrorState extends AddNameLibraryState {}
-
-final class AddNameTypeConfirmErrorState extends AddNameLibraryState {}
-
 final class AddNameAdminPasswordErrorState extends AddNameLibraryState {}

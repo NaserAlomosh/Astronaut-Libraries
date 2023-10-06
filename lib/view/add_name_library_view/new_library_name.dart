@@ -96,7 +96,7 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                           ),
                           SizedBox(height: 70.h),
                           AddTextFiald(
-                            error: false,
+                            sucsses: false,
                             controller: nameLibraryController,
                             hintText: 'enter type name',
                             onChanged: (p0) {
@@ -108,7 +108,7 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                           ),
                           SizedBox(height: 10.h),
                           AddTextFiald(
-                            error: context
+                            sucsses: context
                                 .read<AddNameLibraryCubit>()
                                 .confirmNameWidgetCheak,
                             cheak: true,
@@ -125,7 +125,7 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
                           ),
                           SizedBox(height: 10.h),
                           AddTextFiald(
-                            error: false,
+                            sucsses: false,
                             onChanged: (p0) {},
                             controller: adminPasswordLibraryController,
                             hintText: 'enter admin password',

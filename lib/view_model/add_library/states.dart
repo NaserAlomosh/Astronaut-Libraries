@@ -20,4 +20,6 @@ final class AddPubDevUrlErrorState extends AddLibraryState {}
 
 final class AddTypeErrorState extends AddLibraryState {}
 
+final class AdminPasswordErrorState extends AddLibraryState {}
+
 final class SelectedImageSucsses extends AddLibraryState {}

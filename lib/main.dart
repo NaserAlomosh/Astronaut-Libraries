@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                fontFamily: 'YoungSerif',
+                fontFamily: 'Gabarito',
                 scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
                 appBarTheme: const AppBarTheme(
                   color: Colors.transparent,

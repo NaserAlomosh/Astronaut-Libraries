@@ -3,21 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddTextFiald extends StatelessWidget {
   final TextEditingController controller;
-
   final String hintText;
-
   final bool obscureText;
-  final bool error;
+  final bool sucsses;
   final void Function(String) onChanged;
   final bool cheak;
+
+  final int maxLines;
   const AddTextFiald({
     super.key,
     required this.controller,
     required this.hintText,
     this.obscureText = false,
     required this.onChanged,
-    required this.error,
+    required this.sucsses,
     this.cheak = false,
+    this.maxLines = 1,
   });
 
   @override
@@ -34,12 +35,13 @@ class AddTextFiald extends StatelessWidget {
               onChanged: onChanged,
               obscureText: obscureText,
               controller: controller,
+              maxLines: maxLines,
               style: TextStyle(color: Colors.white.withOpacity(0.8)),
               decoration: InputDecoration(
                 suffixIcon: cheak == true
                     ? controller.text == ""
                         ? null
-                        : error == true
+                        : sucsses == false
                             ? const Icon(
                                 Icons.error_outline_outlined,
                                 color: Colors.red,

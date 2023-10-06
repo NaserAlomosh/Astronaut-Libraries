@@ -5,7 +5,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import '../constant/icon/app_icon.dart';
 import '../constant/string/app_string_en.dart';
 import '../style/color_app.dart';
-import '../view/account/account.dart';
+import '../view/profile/profile.dart';
 import '../view/home/home.dart';
 import '../view/shopping_cart.dart';
 
@@ -25,7 +25,7 @@ class _CustomGoogleNavBarState extends State<CustomGoogleNavBar> {
         body: const [
           HomeView(),
           ShoppingCart(),
-          AccountView(),
+          ProfileView(),
           ShoppingCart(),
         ][selectedIndex],
         bottomNavigationBar: Container(

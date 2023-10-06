@@ -1,8 +1,8 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
 
 import 'package:astronaut_libraries/view/librarys/librarys_view.dart';
-import 'package:astronaut_libraries/view_model/add_library_lib/cubit.dart';
-import 'package:astronaut_libraries/view_model/add_library_lib/states.dart';
+import 'package:astronaut_libraries/view_model/add_library/cubit.dart';
+import 'package:astronaut_libraries/view_model/add_library/states.dart';
 import 'package:astronaut_libraries/widget/custom_text_buttom.dart';
 import 'package:astronaut_libraries/widget/text_fiald_add_new.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +23,17 @@ class _AddLibraryViewState extends State<AddLibraryView> {
   TextEditingController? confirmlipraryNameController;
   TextEditingController? githubUrlController;
   TextEditingController? pubDevUrlController;
-  TextEditingController? adminPasswordcontroller;
+  TextEditingController? adminPasswordController;
+
+  TextEditingController? descriptionController;
   @override
   void initState() {
     lipraryNameController = TextEditingController();
     confirmlipraryNameController = TextEditingController();
     githubUrlController = TextEditingController();
     pubDevUrlController = TextEditingController();
-    adminPasswordcontroller = TextEditingController();
+    adminPasswordController = TextEditingController();
+    descriptionController = TextEditingController();
     super.initState();
   }
 
@@ -40,7 +43,8 @@ class _AddLibraryViewState extends State<AddLibraryView> {
     confirmlipraryNameController?.dispose();
     githubUrlController?.dispose();
     pubDevUrlController?.dispose();
-    adminPasswordcontroller?.dispose();
+    adminPasswordController?.dispose();
+    descriptionController?.dispose();
     super.dispose();
   }
 
@@ -106,7 +110,7 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 30.h,
+                            height: 20.h,
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -130,16 +134,28 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                           AddTextFiald(
                             controller: lipraryNameController!,
                             hintText: 'library name',
-                            onChanged: (_) {},
-                            error: false,
+                            onChanged: (p0) {
+                              context.read<AddLibraryCubit>().cheakTextFiald(
+                                    p0,
+                                    confirmlipraryNameController?.text,
+                                  );
+                            },
+                            sucsses: false,
                             cheak: false,
                           ),
                           SizedBox(height: 10.h),
                           AddTextFiald(
                             controller: confirmlipraryNameController!,
                             hintText: 'confirm liprary name',
-                            onChanged: (_) {},
-                            error: true,
+                            onChanged: (p0) {
+                              context.read<AddLibraryCubit>().cheakTextFiald(
+                                    p0,
+                                    lipraryNameController?.text,
+                                  );
+                            },
+                            sucsses: context
+                                .read<AddLibraryCubit>()
+                                .confirmNameWidgetCheak!,
                             cheak: true,
                           ),
                           SizedBox(height: 10.h),
@@ -147,7 +163,7 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                             controller: githubUrlController!,
                             hintText: 'github url',
                             onChanged: (_) {},
-                            error: false,
+                            sucsses: false,
                             cheak: false,
                           ),
                           SizedBox(height: 10.h),
@@ -155,23 +171,33 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                             controller: pubDevUrlController!,
                             hintText: 'pub.dev url',
                             onChanged: (_) {},
-                            error: false,
+                            sucsses: false,
                             cheak: false,
                           ),
                           SizedBox(height: 10.h),
                           AddTextFiald(
-                            controller: adminPasswordcontroller!,
+                            controller: adminPasswordController!,
                             hintText: 'admin password',
                             onChanged: (_) {},
                             obscureText: true,
-                            error: false,
+                            sucsses: false,
+                            cheak: false,
+                          ),
+                          SizedBox(height: 10.h),
+                          AddTextFiald(
+                            controller: descriptionController!,
+                            hintText: 'description (optional)',
+                            onChanged: (_) {},
+                            maxLines: 3,
+                            obscureText: false,
+                            sucsses: false,
                             cheak: false,
                           ),
                           SizedBox(height: 10.h),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Container(
-                                height: 200.h,
+                                height: 140.h,
                                 decoration: BoxDecoration(
                                   color: Colors.white10,
                                   borderRadius: BorderRadius.circular(10.w),
@@ -184,41 +210,50 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                                               .read<AddLibraryCubit>()
                                               .seletImage();
                                         },
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.add,
-                                                color: Colors.grey,
-                                                size: 100.sp,
-                                              ),
-                                              Text(
-                                                'Cliek for select photo',
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 20.sp),
-                                              )
-                                            ],
-                                          ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.add,
+                                              color: Colors.grey,
+                                              size: 100.sp,
+                                            ),
+                                            Text(
+                                              'Cliek for select photo',
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 20.sp),
+                                            )
+                                          ],
                                         ),
                                       )
-                                    : Image.file(context
-                                        .read<AddLibraryCubit>()
-                                        .image!)),
+                                    : Center(
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: Image.file(
+                                            context
+                                                .read<AddLibraryCubit>()
+                                                .image!,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      )),
                           ),
                           SizedBox(height: 20.h),
                           CustomTextButton(
                             onPressed: () {
                               context.read<AddLibraryCubit>().addLibrary(
-                                    name: lipraryNameController!.text,
-                                    confirmName:
-                                        confirmlipraryNameController!.text,
-                                    gitHubUrl: githubUrlController!.text,
-                                    pubDevUrl: pubDevUrlController!.text,
-                                    type: widget.widgetName,
-                                  );
+                                  name: lipraryNameController!.text,
+                                  confirmName:
+                                      confirmlipraryNameController!.text,
+                                  gitHubUrl: githubUrlController!.text,
+                                  pubDevUrl: pubDevUrlController!.text,
+                                  description: descriptionController!.text,
+                                  type: widget.widgetName,
+                                  adminPassword: adminPasswordController!.text);
                             },
                             label: 'Create',
                           ),
