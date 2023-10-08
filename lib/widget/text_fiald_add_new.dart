@@ -10,6 +10,8 @@ class AddTextFiald extends StatelessWidget {
   final bool cheak;
 
   final int maxLines;
+
+  final TextInputType textInputType;
   const AddTextFiald({
     super.key,
     required this.controller,
@@ -19,6 +21,7 @@ class AddTextFiald extends StatelessWidget {
     required this.sucsses,
     this.cheak = false,
     this.maxLines = 1,
+    this.textInputType = TextInputType.text,
   });
 
   @override
@@ -30,12 +33,13 @@ class AddTextFiald extends StatelessWidget {
         child: Container(
           color: Colors.white10,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: TextField(
               onChanged: onChanged,
               obscureText: obscureText,
               controller: controller,
               maxLines: maxLines,
+              keyboardType: textInputType,
               style: TextStyle(color: Colors.white.withOpacity(0.8)),
               decoration: InputDecoration(
                 suffixIcon: cheak == true
@@ -52,7 +56,9 @@ class AddTextFiald extends StatelessWidget {
                               )
                     : null,
                 hintText: hintText,
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.6),
+                ),
                 border: InputBorder.none,
               ),
             ),

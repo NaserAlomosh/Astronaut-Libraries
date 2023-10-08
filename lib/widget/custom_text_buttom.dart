@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/link.dart';
@@ -20,16 +21,23 @@ class CustomTextButton extends StatelessWidget {
     return link == false
         ? Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(10.w)),
-              child: TextButton(
-                onPressed: onPressed,
-                child: Text(
-                  label,
-                  style: TextStyle(color: Colors.white.withOpacity(0.8)),
+            child: InkWell(
+              onTap: onPressed,
+              borderRadius: BorderRadius.circular(10.w),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(10.w)),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(15.w),
+                    child: CustomText(
+                      textfield: true,
+                      text: label,
+                      fontsize: 16.sp,
+                    ),
+                  ),
                 ),
               ),
             ),

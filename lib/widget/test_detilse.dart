@@ -56,16 +56,18 @@ class DetailPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-
                         //
                       ],
                     ),
                   ),
                   SizedBox(height: 20.h),
                   Text.rich(
-                    TextSpan(style: TextStyle(fontSize: 18.sp), children: [
-                      TextSpan(text: description),
-                    ]),
+                    TextSpan(
+                      style: TextStyle(fontSize: 18.sp),
+                      children: [
+                        TextSpan(text: description),
+                      ],
+                    ),
                   ),
                 ],
               ),

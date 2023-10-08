@@ -1,4 +1,6 @@
+import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
 import 'package:astronaut_libraries/style/color_app.dart';
+import 'package:astronaut_libraries/view/posts/post_view.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -105,9 +107,14 @@ Widget builderPostsWidget(BuildContext context) {
           mainAxisSpacing: 1,
           crossAxisCount: 3,
           children: [
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                AppNavigation().navigatoinPushZoom(context, const PostView());
+              },
+              child: Image.network(
+                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
             Image.network(
               'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',

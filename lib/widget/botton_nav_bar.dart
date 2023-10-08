@@ -7,7 +7,6 @@ import '../constant/string/app_string_en.dart';
 import '../style/color_app.dart';
 import '../view/profile/profile.dart';
 import '../view/home/home.dart';
-import '../view/shopping_cart.dart';
 
 class CustomGoogleNavBar extends StatefulWidget {
   const CustomGoogleNavBar({super.key});
@@ -24,9 +23,9 @@ class _CustomGoogleNavBarState extends State<CustomGoogleNavBar> {
       child: Scaffold(
         body: const [
           HomeView(),
-          ShoppingCart(),
           ProfileView(),
-          ShoppingCart(),
+          ProfileView(),
+          ProfileView(),
         ][selectedIndex],
         bottomNavigationBar: Container(
           decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppNavigation {
   navigatoinPush(BuildContext context, Widget screen) {
@@ -24,5 +25,21 @@ class AppNavigation {
       ),
       (Route<dynamic> route) => false,
     );
+  }
+
+  pushReplacmentRightToLeftWithFade(BuildContext context, Widget screen) {
+    Get.offAll(() => screen, transition: Transition.rightToLeftWithFade);
+  }
+
+  navigatoinPushZoom(BuildContext context, Widget screen) {
+    Get.to(() => screen, transition: Transition.zoom);
+  }
+
+  navigatoinPushFadeIn(BuildContext context, Widget screen) {
+    Get.to(() => screen, transition: Transition.fadeIn);
+  }
+
+  navigatoinPushFade(BuildContext context, Widget screen) {
+    Get.to(() => screen, transition: Transition.fade);
   }
 }
