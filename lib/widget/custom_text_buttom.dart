@@ -25,18 +25,16 @@ class CustomTextButton extends StatelessWidget {
               onTap: onPressed,
               borderRadius: BorderRadius.circular(10.w),
               child: Container(
+                height: 45.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white10,
                     borderRadius: BorderRadius.circular(10.w)),
                 child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(15.w),
-                    child: CustomText(
-                      textfield: true,
-                      text: label,
-                      fontsize: 16.sp,
-                    ),
+                  child: CustomText(
+                    textfield: true,
+                    text: label,
+                    fontsize: 16,
                   ),
                 ),
               ),

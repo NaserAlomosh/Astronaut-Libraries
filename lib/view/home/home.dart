@@ -1,14 +1,20 @@
 import 'package:astronaut_libraries/view/profile/profile.dart';
+import 'package:astronaut_libraries/view_model/home/cubit.dart';
+import 'package:astronaut_libraries/view_model/home/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../classes/navigation/app_navigation.dart';
-import '../../view_model/get_name_library/cubit.dart';
-import '../../view_model/get_name_library/states.dart';
+import '../../constant/icon/app_icon.dart';
+import '../../constant/string/app_string_en.dart';
+import '../../view_model/get_name_widget/cubit.dart';
+import '../../view_model/get_name_widget/states.dart';
+import '../../widget/custom_icon.dart';
 import '../../widget/home_widget.dart';
-import '../add_name_library_view/new_library_name.dart';
+import '../add_name_widget_view/add_name_widget.dart';
 import '../librarys/librarys_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -21,12 +27,17 @@ class HomeView extends StatefulWidget {
 TextEditingController newWidgetController = TextEditingController();
 
 class _HomeViewState extends State<HomeView> {
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => GetNameLibraryCubit()..getName(),
+          create: (context) => GetNameWidgetCubit()..getName(),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
         ),
       ],
       child: SafeArea(
@@ -35,98 +46,179 @@ class _HomeViewState extends State<HomeView> {
             Scaffold(
               backgroundColor: Colors.black,
               body: Center(
-                child: Lottie.asset('assets/home.json',
+                child: Lottie.asset('assets/profile.json',
                     height: double.infinity, width: double.infinity),
               ),
             ),
-            Scaffold(
-                backgroundColor: Colors.black.withOpacity(0.4),
-                drawer: BlocConsumer<GetNameLibraryCubit, GetNameLibraryState>(
-                  listener: (context, state) {},
-                  builder: (context, state) {
-                    if (state is GetNameLibraryLoadingState) {
-                      return Center(
-                        child: Lottie.asset('assets/loading.json'),
-                      );
-                    } else {
-                      return Drawer(
-                        width: 180.w,
-                        backgroundColor: Colors.black.withOpacity(0.4),
-                        shadowColor: Colors.black.withOpacity(0.4),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Lottie.asset(
-                                'assets/header_logo.json',
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                              ListTile(
-                                trailing: InkWell(
-                                  onTap: () {
-                                    AppNavigation().navigatoinPush(
-                                      context,
-                                      const AddNameLibraryView(),
-                                    );
-                                  },
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.white,
+            BlocConsumer<HomeCubit, HomeState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return Scaffold(
+                  backgroundColor: Colors.black.withOpacity(0.4),
+                  drawer: BlocConsumer<GetNameWidgetCubit, GetNameWidgetState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is GetNameWidgetLoadingState) {
+                        return Center(
+                          child: Lottie.asset('assets/loading.json'),
+                        );
+                      } else {
+                        return Drawer(
+                          width: 180.w,
+                          backgroundColor: Colors.black.withOpacity(0.4),
+                          shadowColor: Colors.black.withOpacity(0.4),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Lottie.asset(
+                                  'assets/header_logo.json',
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
+                                ListTile(
+                                  trailing: InkWell(
+                                    onTap: () {
+                                      AppNavigation().push(
+                                        context,
+                                        const AddNameWidgetView(),
+                                      );
+                                    },
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 500,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      onTap: () {
-                                        AppNavigation().navigatoinPush(
-                                          context,
-                                          LibrarysView(
-                                            widgetName: context
-                                                .read<GetNameLibraryCubit>()
-                                                .nameLibrarys[index]
-                                                .type
-                                                .toString(),
-                                            added: false,
-                                          ),
-                                        );
-                                      },
-                                      trailing: Icon(Icons.arrow_forward_ios,
-                                          color: Colors.white.withOpacity(0.8)),
-                                      title: Text(
-                                        context
-                                            .read<GetNameLibraryCubit>()
-                                            .nameLibrarys[index]
-                                            .type
-                                            .toString(),
-                                        style: TextStyle(
-                                          color: Colors.white.withOpacity(0.8),
-                                          fontSize: 15.sp,
+                                SizedBox(
+                                  height: 500,
+                                  child: ListView.builder(
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        onTap: () {
+                                          AppNavigation().push(
+                                            context,
+                                            LibrarysView(
+                                              widgetName: context
+                                                  .read<GetNameWidgetCubit>()
+                                                  .nameWidgets[index]
+                                                  .type
+                                                  .toString(),
+                                              added: false,
+                                            ),
+                                          );
+                                        },
+                                        trailing: const CustomIcons(
+                                          icon: Icons
+                                              .keyboard_arrow_right_rounded,
+                                          size: 20,
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  itemCount: context
-                                      .read<GetNameLibraryCubit>()
-                                      .nameLibrarys
-                                      .length,
+                                        title: Text(
+                                          context
+                                              .read<GetNameWidgetCubit>()
+                                              .nameWidgets[index]
+                                              .type
+                                              .toString(),
+                                          style: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.8),
+                                            fontSize: 14.sp,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    itemCount: context
+                                        .read<GetNameWidgetCubit>()
+                                        .nameWidgets
+                                        .length,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                        );
+                      }
+                    },
+                  ),
+                  appBar: AppBar(
+                    toolbarHeight: 100,
+                    leading: Builder(
+                      builder: (context) => IconButton(
+                        icon: Icon(
+                          Icons.menu,
+                          color: Colors.white.withOpacity(0.8),
+                          size: 20.sp,
                         ),
-                      );
-                    }
-                  },
-                ),
-                appBar: AppBar(
-                  actions: const [
-                    Icon(Icons.search),
-                  ],
-                ),
-                body: builderHomeWidget(context)),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      ),
+                    ),
+                    actions: const [
+                      Icon(Icons.search),
+                    ],
+                  ),
+                  body: [
+                    Container(),
+                    Container(),
+                    Container(),
+                    const ProfileView(),
+                  ][context.read<HomeCubit>().selectedIndex],
+                  bottomNavigationBar: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.1),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 20,
+                          color: Colors.black.withOpacity(0.1),
+                        )
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GNav(
+                        rippleColor: Colors.white,
+                        hoverColor: Colors.black.withOpacity(0.4),
+                        gap: 10.w,
+                        activeColor: Colors.white,
+                        iconSize: 25.sp,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
+                        duration: const Duration(milliseconds: 400),
+                        tabBackgroundColor: Colors.grey.withOpacity(0.4),
+                        color: Colors.grey,
+                        textSize: 1000,
+                        style: GnavStyle.google,
+                        textStyle: TextStyle(fontSize: 14.sp),
+                        tabs: const [
+                          GButton(
+                            icon: AppIcons.home,
+                            text: AppStringEN.home,
+                            textSize: 1000,
+                          ),
+                          GButton(
+                            icon: AppIcons.favorite,
+                            text: AppStringEN.favorite,
+                            textSize: 1000,
+                          ),
+                          GButton(
+                            icon: AppIcons.search,
+                            text: AppStringEN.search,
+                            textSize: 1000,
+                          ),
+                          GButton(
+                            icon: AppIcons.profile,
+                            text: AppStringEN.profile,
+                            textSize: 1000,
+                          ),
+                        ],
+                        selectedIndex: selectedIndex,
+                        onTabChange: (index) {
+                          context.read<HomeCubit>().changeScreen(index);
+                        },
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -149,7 +241,7 @@ Widget builderHomeWidget(BuildContext context) {
               lable: 'Profile',
               icon: Icons.person,
               onTap: () {
-                AppNavigation().navigatoinPush(context, const ProfileView());
+                AppNavigation().push(context, const ProfileView());
               },
             ),
             CustemHomeWidget(

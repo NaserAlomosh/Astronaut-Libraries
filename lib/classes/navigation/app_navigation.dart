@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppNavigation {
-  navigatoinPush(BuildContext context, Widget screen) {
+  push(BuildContext context, Widget screen) {
     Navigator.push(
       context,
       PageRouteBuilder(
@@ -14,7 +14,7 @@ class AppNavigation {
     );
   }
 
-  navigatoinPushReplacement(BuildContext context, Widget screen) {
+  pushReplacement(BuildContext context, Widget screen) {
     Navigator.pushAndRemoveUntil(
       context,
       PageRouteBuilder(
@@ -27,19 +27,23 @@ class AppNavigation {
     );
   }
 
+  back() {
+    Get.back();
+  }
+
   pushReplacmentRightToLeftWithFade(BuildContext context, Widget screen) {
-    Get.offAll(() => screen, transition: Transition.rightToLeftWithFade);
+    Get.offAll(screen, transition: Transition.rightToLeftWithFade);
   }
 
-  navigatoinPushZoom(BuildContext context, Widget screen) {
-    Get.to(() => screen, transition: Transition.zoom);
+  pushZoom(BuildContext context, Widget screen) {
+    Get.to(screen, transition: Transition.zoom);
   }
 
-  navigatoinPushFadeIn(BuildContext context, Widget screen) {
-    Get.to(() => screen, transition: Transition.fadeIn);
+  pushFadeIn(BuildContext context, Widget screen) {
+    Get.to(screen, transition: Transition.fadeIn);
   }
 
-  navigatoinPushFade(BuildContext context, Widget screen) {
-    Get.to(() => screen, transition: Transition.fade);
+  pushFade(BuildContext context, Widget screen) {
+    Get.to(screen, transition: Transition.fade);
   }
 }

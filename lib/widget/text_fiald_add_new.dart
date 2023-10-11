@@ -5,7 +5,7 @@ class AddTextFiald extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  final bool sucsses;
+  final bool? sucsses;
   final void Function(String) onChanged;
   final bool cheak;
 
@@ -31,35 +31,40 @@ class AddTextFiald extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.w),
         child: Container(
+          height: 50.h,
           color: Colors.white10,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: TextField(
-              onChanged: onChanged,
-              obscureText: obscureText,
-              controller: controller,
-              maxLines: maxLines,
-              keyboardType: textInputType,
-              style: TextStyle(color: Colors.white.withOpacity(0.8)),
-              decoration: InputDecoration(
-                suffixIcon: cheak == true
-                    ? controller.text == ""
-                        ? null
-                        : sucsses == false
-                            ? const Icon(
-                                Icons.error_outline_outlined,
-                                color: Colors.red,
-                              )
-                            : const Icon(
-                                Icons.check,
-                                color: Colors.green,
-                              )
-                    : null,
-                hintText: hintText,
-                hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+            child: Center(
+              child: TextField(
+                onChanged: onChanged,
+                obscureText: obscureText,
+                controller: controller,
+                maxLines: maxLines,
+                keyboardType: textInputType,
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.8), fontSize: 14.sp),
+                decoration: InputDecoration(
+                  suffixIcon: cheak == true
+                      ? controller.text == ""
+                          ? null
+                          : sucsses == false
+                              ? const Icon(
+                                  Icons.error_outline_outlined,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                )
+                      : null,
+                  hintText: hintText,
+                  hintStyle: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.white.withOpacity(0.6),
+                  ),
+                  border: InputBorder.none,
                 ),
-                border: InputBorder.none,
               ),
             ),
           ),

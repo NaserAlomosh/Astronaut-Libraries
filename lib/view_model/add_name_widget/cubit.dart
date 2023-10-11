@@ -28,7 +28,7 @@ class AddNameLibraryCubit extends Cubit<AddNameLibraryState> {
         if (cheakTowTextfiald(ADMIN_PASSWORD, adminPassword)) {
           await addNameLibrary(type).then(
             (value) async {
-              await getLibraryName();
+              await getWidgetName();
               type = typeWidget;
               emit(AddNameSucssesState());
             },

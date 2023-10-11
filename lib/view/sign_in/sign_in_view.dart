@@ -1,4 +1,5 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
+import 'package:astronaut_libraries/view/home/home.dart';
 import 'package:astronaut_libraries/view/sign_up/sign_up_view.dart';
 import 'package:astronaut_libraries/view_model/sign_in/cubit.dart';
 import 'package:astronaut_libraries/view_model/sign_in/states.dart';
@@ -29,7 +30,11 @@ class _SignInViewState extends State<SignInView> {
         children: [
           Scaffold(
             body: Center(
-              child: Lottie.asset('assets/sign_in.json'),
+              child: Lottie.asset(
+                'assets/sign_in.json',
+                height: double.infinity,
+                width: double.infinity,
+              ),
             ),
           ),
           Scaffold(
@@ -37,7 +42,11 @@ class _SignInViewState extends State<SignInView> {
             body: BlocProvider(
               create: (context) => SignInCubit(),
               child: BlocConsumer<SignInCubit, SignInState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if (state is SignInSucssesState) {
+                    AppNavigation().pushReplacement(context, const HomeView());
+                  }
+                },
                 builder: (context, state) {
                   if (state is SignInLoadingState) {
                     return Center(
@@ -62,12 +71,11 @@ class _SignInViewState extends State<SignInView> {
                               ),
                               SizedBox(height: 80.h),
                               AddTextFiald(
-                                textInputType: TextInputType.emailAddress,
-                                controller: emailController,
-                                hintText: 'enter your email',
-                                onChanged: (_) {},
-                                sucsses: false,
-                              ),
+                                  textInputType: TextInputType.emailAddress,
+                                  controller: emailController,
+                                  hintText: 'enter your email',
+                                  onChanged: (_) {},
+                                  sucsses: false),
                               SizedBox(height: 20.h),
                               AddTextFiald(
                                 textInputType: TextInputType.visiblePassword,
@@ -90,15 +98,22 @@ class _SignInViewState extends State<SignInView> {
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CustomText(text: '- or -', fontsize: 16),
+                                  CustomText(
+                                    textfield: true,
+                                    text: '- or -',
+                                    fontsize: 12,
+                                  ),
                                 ],
                               ),
-                              SizedBox(height: 20.h),
+                              SizedBox(height: 5.h),
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
-                                      text: 'sign in with', fontsize: 16),
+                                    textfield: true,
+                                    text: 'sign in with',
+                                    fontsize: 12,
+                                  ),
                                 ],
                               ),
                               SizedBox(height: 20.h),
@@ -115,14 +130,23 @@ class _SignInViewState extends State<SignInView> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text('already you have account?'),
-                                    const SizedBox(width: 5),
+                                    const CustomText(
+                                      textfield: true,
+                                      text: 'You don\'t have account?',
+                                      fontsize: 12,
+                                    ),
+                                    SizedBox(width: 5.w),
                                     InkWell(
                                       onTap: () {
-                                        AppNavigation().navigatoinPushZoom(
+                                        AppNavigation().pushFade(
                                             context, const SignUpView());
                                       },
-                                      child: const Text('Sign Up'),
+                                      child: const CustomText(
+                                        textfield: true,
+                                        text: 'Sign Up',
+                                        color: Colors.blueAccent,
+                                        fontsize: 12,
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -1,21 +1,12 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:widget_flutter_app/model/banners/banners.dart';
-// import 'package:widget_flutter_app/view_model/home/states.dart';
+import 'package:astronaut_libraries/view_model/home/states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-// class HomeCubit extends Cubit<HomeState> {
-//   List<BannersModel> bannersList = [];
-
-//   HomeCubit() : super(HomeInitialState());
-//   Future<void> getBannersData() async {
-//     emit(HomeLoadingState());
-//     FirebaseFirestore.instance.collection('banners').get().then(
-//       (value) {
-//         for (var element in value.docs) {
-//           bannersList.add(BannersModel.fromJosn(element.data()));
-//         }
-//         emit(HomeSuccessesState());
-//       },
-//     );
-//   }
-// }
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit() : super(HomeInitialState());
+  int selectedIndex = 0;
+  changeScreen(int? index) {
+    selectedIndex = index!;
+    print(selectedIndex);
+    emit(HomeSuccessesState());
+  }
+}

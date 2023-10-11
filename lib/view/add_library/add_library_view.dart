@@ -66,7 +66,7 @@ class _AddLibraryViewState extends State<AddLibraryView> {
             BlocConsumer<AddLibraryCubit, AddLibraryState>(
               listener: (context, state) {
                 if (state is AddLibrarySucssesState) {
-                  AppNavigation().navigatoinPushReplacement(
+                  AppNavigation().pushReplacement(
                     context,
                     LibrarysView(
                       added: true,
@@ -155,7 +155,7 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                             },
                             sucsses: context
                                 .read<AddLibraryCubit>()
-                                .confirmNameWidgetCheak!,
+                                .confirmNameWidgetCheak,
                             cheak: true,
                           ),
                           SizedBox(height: 10.h),
@@ -176,15 +176,6 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                           ),
                           SizedBox(height: 10.h),
                           AddTextFiald(
-                            controller: adminPasswordController!,
-                            hintText: 'admin password',
-                            onChanged: (_) {},
-                            obscureText: true,
-                            sucsses: false,
-                            cheak: false,
-                          ),
-                          SizedBox(height: 10.h),
-                          AddTextFiald(
                             controller: descriptionController!,
                             hintText: 'description (optional)',
                             onChanged: (_) {},
@@ -197,7 +188,8 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Container(
-                                height: 140.h,
+                                height: 200,
+                                width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: Colors.white10,
                                   borderRadius: BorderRadius.circular(10.w),
@@ -210,24 +202,14 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                                               .read<AddLibraryCubit>()
                                               .seletImage();
                                         },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.add,
+                                        child: Center(
+                                          child: Text(
+                                            'Cliek for select photo',
+                                            style: TextStyle(
                                               color: Colors.grey,
-                                              size: 100.sp,
+                                              fontSize: 20.sp,
                                             ),
-                                            Text(
-                                              'Cliek for select photo',
-                                              style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 20.sp),
-                                            )
-                                          ],
+                                          ),
                                         ),
                                       )
                                     : Center(
@@ -241,6 +223,15 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                                           ),
                                         ),
                                       )),
+                          ),
+                          SizedBox(height: 10.h),
+                          AddTextFiald(
+                            controller: adminPasswordController!,
+                            hintText: 'admin password',
+                            onChanged: (_) {},
+                            obscureText: true,
+                            sucsses: false,
+                            cheak: false,
                           ),
                           SizedBox(height: 20.h),
                           CustomTextButton(

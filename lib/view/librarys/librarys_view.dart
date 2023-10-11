@@ -44,8 +44,7 @@ class _LibrarysViewState extends State<LibrarysView> {
                       borderRadius: BorderRadius.circular(30.w),
                       onTap: () {
                         if (widget.added) {
-                          AppNavigation()
-                              .navigatoinPush(context, const HomeView());
+                          AppNavigation().push(context, const HomeView());
                         } else {
                           Navigator.of(context).pop();
                         }
@@ -67,7 +66,7 @@ class _LibrarysViewState extends State<LibrarysView> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30.w),
                       onTap: () {
-                        AppNavigation().navigatoinPush(context,
+                        AppNavigation().push(context,
                             AddLibraryView(widgetName: widget.widgetName));
                       },
                       child: Stack(
@@ -122,7 +121,7 @@ Widget builderLibrarysWidget(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                AppNavigation().navigatoinPush(
+                AppNavigation().push(
                   context,
                   LibraryDetails(
                     description: e.description.toString(),

@@ -1,5 +1,4 @@
 import 'package:astronaut_libraries/view/home/home.dart';
-import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:astronaut_libraries/view_model/sign_up/cubit.dart';
 import 'package:astronaut_libraries/view_model/sign_up/states.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
@@ -114,11 +113,12 @@ class _SignUpViewState extends State<SignUpView> {
                               ),
                               SizedBox(height: 20.h),
                               AddTextFiald(
-                                  textInputType: TextInputType.visiblePassword,
-                                  controller: passwordController,
-                                  hintText: 'password',
-                                  onChanged: (_) {},
-                                  sucsses: false),
+                                textInputType: TextInputType.visiblePassword,
+                                controller: passwordController,
+                                hintText: 'password',
+                                onChanged: (_) {},
+                                sucsses: false,
+                              ),
                               SizedBox(height: 20.h),
                               CustomTextButton(
                                 label: 'Sign up',
@@ -130,9 +130,10 @@ class _SignUpViewState extends State<SignUpView> {
                                         lastName:
                                             lastNameController.text.trim(),
                                         password: passwordController.text,
-                                        phone: int.parse(
-                                          phoneController.text.trim(),
-                                        ),
+                                        phone: phoneController.text.trim() != ''
+                                            ? int.parse(
+                                                phoneController.text.trim())
+                                            : 0,
                                       );
                                 },
                               ),
@@ -140,15 +141,18 @@ class _SignUpViewState extends State<SignUpView> {
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CustomText(text: '- or -', fontsize: 16),
+                                  CustomText(
+                                    text: '- or -',
+                                    fontsize: 12,
+                                  ),
                                 ],
                               ),
-                              SizedBox(height: 20.h),
+                              SizedBox(height: 5.h),
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
-                                      text: 'sign up with', fontsize: 16),
+                                      text: 'sign up with', fontsize: 12),
                                 ],
                               ),
                               SizedBox(height: 20.h),
@@ -165,14 +169,22 @@ class _SignUpViewState extends State<SignUpView> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text('already you have account?'),
-                                    const SizedBox(width: 5),
+                                    const CustomText(
+                                      textfield: true,
+                                      text: 'already you have account?',
+                                      fontsize: 12,
+                                    ),
+                                    SizedBox(width: 5.w),
                                     InkWell(
                                       onTap: () {
-                                        AppNavigation().navigatoinPushFadeIn(
-                                            context, const SignInView());
+                                        AppNavigation().back();
                                       },
-                                      child: const Text('Sign In'),
+                                      child: const CustomText(
+                                        textfield: true,
+                                        text: 'Sign in',
+                                        color: Colors.blueAccent,
+                                        fontsize: 14,
+                                      ),
                                     ),
                                   ],
                                 ),

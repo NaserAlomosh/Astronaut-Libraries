@@ -5,19 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../classes/navigation/app_navigation.dart';
-import '../../view_model/add_name_library/cubit.dart';
-import '../../view_model/add_name_library/states.dart';
+import '../../view_model/add_name_widget/cubit.dart';
+import '../../view_model/add_name_widget/states.dart';
 import '../../widget/text_fiald_add_new.dart';
 import '../home/home.dart';
 
-class AddNameLibraryView extends StatefulWidget {
-  const AddNameLibraryView({super.key});
+class AddNameWidgetView extends StatefulWidget {
+  const AddNameWidgetView({super.key});
 
   @override
-  State<AddNameLibraryView> createState() => _AddNameLibraryViewState();
+  State<AddNameWidgetView> createState() => _AddNameWidgetViewState();
 }
 
-class _AddNameLibraryViewState extends State<AddNameLibraryView> {
+class _AddNameWidgetViewState extends State<AddNameWidgetView> {
   TextEditingController nameLibraryController = TextEditingController();
   TextEditingController confirmNameLibraryController = TextEditingController();
   TextEditingController adminPasswordLibraryController =
@@ -71,8 +71,7 @@ class _AddNameLibraryViewState extends State<AddNameLibraryView> {
               body: BlocConsumer<AddNameLibraryCubit, AddNameLibraryState>(
                 listener: (context, state) {
                   if (state is AddNameSucssesState) {
-                    AppNavigation()
-                        .navigatoinPushReplacement(context, const HomeView());
+                    AppNavigation().pushReplacement(context, const HomeView());
                   }
                 },
                 builder: (context, state) {

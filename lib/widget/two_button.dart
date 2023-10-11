@@ -35,8 +35,9 @@ class CustomTwoButton extends StatelessWidget {
                       Icon(
                         MdiIcons.facebook,
                         color: Colors.blueAccent,
+                        size: 20.w,
                       ),
-                      CustomText(text: 'facebook', fontsize: 14.sp)
+                      const CustomText(text: 'facebook', fontsize: 14)
                     ],
                   ),
                 ),
@@ -61,8 +62,9 @@ class CustomTwoButton extends StatelessWidget {
                       Icon(
                         MdiIcons.google,
                         color: Colors.red,
+                        size: 20.w,
                       ),
-                      CustomText(text: 'gmail', fontsize: 14.sp)
+                      const CustomText(text: 'gmail', fontsize: 14)
                     ],
                   ),
                 ),
