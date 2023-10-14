@@ -1,4 +1,4 @@
-import 'package:astronaut_libraries/view/home/home.dart';
+import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             titleMedium: TextStyle(color: Colors.white),
           ),
         ),
-        home: const HomeView(),
+        home: const SignInView(),
       ),
     );
   }

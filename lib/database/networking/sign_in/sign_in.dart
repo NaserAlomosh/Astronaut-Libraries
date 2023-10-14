@@ -11,7 +11,7 @@ Future<String> signIn({
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      getUserData(id: value.user!.uid);
+      saveOnSheredPrefUserData(id: value.user!.uid);
     });
     return 'Sucsses';
   } on FirebaseAuthException catch (e) {

@@ -23,6 +23,7 @@ class CustomText extends StatelessWidget {
     return textfield == true
         ? Text(
             text,
+            maxLines: 3,
             style: TextStyle(
               color: color?.withOpacity(0.8),
               fontSize: fontsize.sp,
@@ -31,10 +32,12 @@ class CustomText extends StatelessWidget {
         : Padding(
             padding: EdgeInsets.only(left: 20.w),
             child: Text(
+              maxLines: 3,
               text,
               style: TextStyle(
                 color: color?.withOpacity(0.8),
                 fontSize: fontsize.sp,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           );

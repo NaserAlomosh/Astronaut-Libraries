@@ -204,7 +204,7 @@ class _AddLibraryViewState extends State<AddLibraryView> {
                                         },
                                         child: Center(
                                           child: Text(
-                                            'Cliek for select photo',
+                                            'Click for select photo',
                                             style: TextStyle(
                                               color: Colors.grey,
                                               fontSize: 20.sp,

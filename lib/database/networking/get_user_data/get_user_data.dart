@@ -2,9 +2,7 @@ import 'package:astronaut_libraries/database/local/shared_preferences/shared_pre
 import 'package:astronaut_libraries/model/user_data/user_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> getUserData({required String id}) async {
-  //
-  //  List<UserModel> userModel = [];
+Future<void> saveOnSheredPrefUserData({required String id}) async {
   await FirebaseFirestore.instance
       .collection('users')
       .doc(id)

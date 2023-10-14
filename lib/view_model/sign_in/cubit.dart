@@ -1,5 +1,6 @@
 import 'package:astronaut_libraries/database/networking/sign_in/sign_in.dart';
 import 'package:astronaut_libraries/view_model/sign_up/cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'states.dart';
@@ -16,6 +17,8 @@ class SignInCubit extends Cubit<SignInState> {
         } else if (state == 'wrong-password') {
           emit(SignInErrorState());
         } else {
+          var currentUser = FirebaseAuth.instance.currentUser;
+          print(currentUser!.uid);
           emit(SignInSucssesState());
         }
       } else {

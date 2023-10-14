@@ -31,42 +31,74 @@ class AddTextFiald extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.w),
         child: Container(
-          height: 50.h,
+          height: maxLines == 1 ? 50.h : 100.h,
           color: Colors.white10,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: Center(
-              child: TextField(
-                onChanged: onChanged,
-                obscureText: obscureText,
-                controller: controller,
-                maxLines: maxLines,
-                keyboardType: textInputType,
-                style: TextStyle(
-                    color: Colors.white.withOpacity(0.8), fontSize: 14.sp),
-                decoration: InputDecoration(
-                  suffixIcon: cheak == true
-                      ? controller.text == ""
-                          ? null
-                          : sucsses == false
-                              ? const Icon(
-                                  Icons.error_outline_outlined,
-                                  color: Colors.red,
-                                )
-                              : const Icon(
-                                  Icons.check,
-                                  color: Colors.green,
-                                )
-                      : null,
-                  hintText: hintText,
-                  hintStyle: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.white.withOpacity(0.6),
+            child: maxLines == 1
+                ? Center(
+                    child: TextField(
+                      onChanged: onChanged,
+                      obscureText: obscureText,
+                      controller: controller,
+                      maxLines: maxLines,
+                      keyboardType: textInputType,
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 14.sp),
+                      decoration: InputDecoration(
+                        suffixIcon: cheak == true
+                            ? controller.text == ""
+                                ? null
+                                : sucsses == false
+                                    ? const Icon(
+                                        Icons.error_outline_outlined,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.check,
+                                        color: Colors.green,
+                                      )
+                            : null,
+                        hintText: hintText,
+                        hintStyle: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.white.withOpacity(0.6),
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  )
+                : TextField(
+                    onChanged: onChanged,
+                    obscureText: obscureText,
+                    controller: controller,
+                    maxLines: maxLines,
+                    keyboardType: textInputType,
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8), fontSize: 14.sp),
+                    decoration: InputDecoration(
+                      suffixIcon: cheak == true
+                          ? controller.text == ""
+                              ? null
+                              : sucsses == false
+                                  ? const Icon(
+                                      Icons.error_outline_outlined,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                    )
+                          : null,
+                      hintText: hintText,
+                      hintStyle: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.white.withOpacity(0.6),
+                      ),
+                      border: InputBorder.none,
+                    ),
                   ),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
           ),
         ),
       ),

@@ -35,6 +35,10 @@ class AppNavigation {
     Get.offAll(screen, transition: Transition.rightToLeftWithFade);
   }
 
+  pushDownToUp(BuildContext context, Widget screen) {
+    Get.to(screen, transition: Transition.downToUp);
+  }
+
   pushZoom(BuildContext context, Widget screen) {
     Get.to(screen, transition: Transition.zoom);
   }

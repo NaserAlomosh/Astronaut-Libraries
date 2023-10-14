@@ -3,6 +3,7 @@ import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
@@ -15,22 +16,23 @@ import '../../view_model/get_name_widget/states.dart';
 import '../../widget/custom_icon.dart';
 import '../../widget/home_widget.dart';
 import '../add_name_widget_view/add_name_widget.dart';
+import '../add_post_view/add_post_view.dart';
+import '../home_posts_view/home_posts_view.dart';
 import '../librarys/librarys_view.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final int selectedIndex;
+  const HomeView({super.key, this.selectedIndex = 0});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
-TextEditingController newWidgetController = TextEditingController();
-
 class _HomeViewState extends State<HomeView> {
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    final key = GlobalKey<ExpandableFabState>();
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -54,7 +56,18 @@ class _HomeViewState extends State<HomeView> {
               listener: (context, state) {},
               builder: (context, state) {
                 return Scaffold(
-                  backgroundColor: Colors.black.withOpacity(0.4),
+                  floatingActionButton:
+                      context.read<HomeCubit>().selectedIndex == 3
+                          ? FloatingActionButton(
+                              backgroundColor: Colors.white.withOpacity(0.3),
+                              child: const Icon(Icons.add),
+                              onPressed: () {
+                                AppNavigation()
+                                    .pushDownToUp(context, const AddPostView());
+                              },
+                            )
+                          : null,
+                  backgroundColor: Colors.black.withOpacity(0.8),
                   drawer: BlocConsumer<GetNameWidgetCubit, GetNameWidgetState>(
                     listener: (context, state) {},
                     builder: (context, state) {
@@ -140,7 +153,6 @@ class _HomeViewState extends State<HomeView> {
                     },
                   ),
                   appBar: AppBar(
-                    toolbarHeight: 100,
                     leading: Builder(
                       builder: (context) => IconButton(
                         icon: Icon(
@@ -156,7 +168,7 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                   body: [
-                    Container(),
+                    const HomePostsView(),
                     Container(),
                     Container(),
                     const ProfileView(),
@@ -209,7 +221,7 @@ class _HomeViewState extends State<HomeView> {
                             textSize: 1000,
                           ),
                         ],
-                        selectedIndex: selectedIndex,
+                        selectedIndex: widget.selectedIndex,
                         onTabChange: (index) {
                           context.read<HomeCubit>().changeScreen(index);
                         },

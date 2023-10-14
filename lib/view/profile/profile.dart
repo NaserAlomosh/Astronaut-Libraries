@@ -1,10 +1,11 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/view/posts/post_view.dart';
+import 'package:astronaut_libraries/view/posts_details/post_details_view.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -95,76 +96,31 @@ Widget builderPostsWidget(BuildContext context) {
           mainAxisSpacing: 1,
           crossAxisCount: 3,
           children: [
-            GestureDetector(
+            InkWell(
               onTap: () {
-                AppNavigation().pushZoom(context, const PostView());
+                AppNavigation().pushZoom(
+                  context,
+                  const PostDetailsView(),
+                );
               },
-              child: Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                height: 100,
+                width: 100,
+                imageUrl:
+                    "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) =>
+                    Lottie.asset('assets/loading.json'),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-              'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-              fit: BoxFit.cover,
-            ),
-            Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover),
-            Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover),
-            Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover),
           ],
         ),
       ],
