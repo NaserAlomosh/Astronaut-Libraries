@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddTextFiald extends StatelessWidget {
@@ -12,6 +13,7 @@ class AddTextFiald extends StatelessWidget {
   final int maxLines;
 
   final TextInputType textInputType;
+
   const AddTextFiald({
     super.key,
     required this.controller,
@@ -70,6 +72,7 @@ class AddTextFiald extends StatelessWidget {
                     ),
                   )
                 : TextField(
+                    focusNode: FocusNode(),
                     onChanged: onChanged,
                     obscureText: obscureText,
                     controller: controller,

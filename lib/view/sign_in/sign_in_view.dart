@@ -10,6 +10,7 @@ import 'package:astronaut_libraries/widget/two_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 class SignInView extends StatefulWidget {
@@ -118,8 +119,14 @@ class _SignInViewState extends State<SignInView> {
                               ),
                               SizedBox(height: 20.h),
                               CustomTwoButton(
-                                facebookOnTap: () {},
-                                googleOnTap: () {},
+                                firstColor: Colors.blueAccent,
+                                firstIcon: FontAwesomeIcons.facebook,
+                                firstOnTap: () {},
+                                firstTitle: 'Facebook',
+                                lastColor: Colors.red,
+                                lastIcon: FontAwesomeIcons.google,
+                                lastOnTap: () {},
+                                lastTitle: 'google',
                               ),
                             ],
                           ),

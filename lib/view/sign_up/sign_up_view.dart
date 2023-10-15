@@ -7,6 +7,7 @@ import 'package:astronaut_libraries/widget/text_fiald_add_new.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../classes/navigation/app_navigation.dart';
@@ -157,8 +158,14 @@ class _SignUpViewState extends State<SignUpView> {
                               ),
                               SizedBox(height: 20.h),
                               CustomTwoButton(
-                                facebookOnTap: () {},
-                                googleOnTap: () {},
+                                firstColor: Colors.blueAccent,
+                                firstIcon: FontAwesomeIcons.facebook,
+                                firstOnTap: () {},
+                                firstTitle: 'Facebook',
+                                lastColor: Colors.red,
+                                lastIcon: FontAwesomeIcons.google,
+                                lastOnTap: () {},
+                                lastTitle: 'google',
                               ),
                             ],
                           ),

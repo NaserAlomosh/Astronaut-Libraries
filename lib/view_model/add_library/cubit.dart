@@ -43,12 +43,13 @@ class AddLibraryCubit extends Cubit<AddLibraryState> {
     } else {
       emit(AddLibraryLoadingState());
       await addNewLibrary(
-          name: name,
-          image: image,
-          gitHubUrl: gitHubUrl,
-          pubDevUrl: pubDevUrl,
-          type: type,
-          description: description);
+        name: name,
+        image: image,
+        gitHubUrl: gitHubUrl,
+        pubDevUrl: pubDevUrl,
+        type: type,
+        description: description,
+      );
 
       emit(AddLibrarySucssesState());
     }

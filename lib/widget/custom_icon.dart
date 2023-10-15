@@ -6,14 +6,21 @@ class CustomIcons extends StatelessWidget {
 
   final double size;
 
-  const CustomIcons({super.key, required this.icon, required this.size});
+  final Color? color;
+
+  const CustomIcons({
+    super.key,
+    required this.icon,
+    required this.size,
+    this.color = Colors.white,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Icon(
       icon,
       size: size.sp,
-      color: Colors.white.withOpacity(0.8),
+      color: color!.withOpacity(0.8),
     );
   }
 }

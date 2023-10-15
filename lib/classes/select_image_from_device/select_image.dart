@@ -9,6 +9,7 @@ Future<File?> getImagePicker() async {
   //start upload
   if (imagePicked != null) {
     // selected
+    print(imagePicked.path);
     return File(imagePicked.path);
   } else {}
   return null;
