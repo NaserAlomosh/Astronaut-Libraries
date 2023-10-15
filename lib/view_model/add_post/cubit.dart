@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:astronaut_libraries/classes/select_image_from_device/select_image.dart';
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:astronaut_libraries/service/networking/add_post/add_post.dart';
+import 'package:astronaut_libraries/service/networking/get_post/get_post.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'states.dart';

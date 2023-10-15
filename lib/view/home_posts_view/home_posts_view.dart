@@ -1,5 +1,3 @@
-import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/view/posts_details/post_details_view.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

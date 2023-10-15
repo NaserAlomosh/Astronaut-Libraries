@@ -21,8 +21,8 @@ import '../home_posts_view/home_posts_view.dart';
 import '../librarys/librarys_view.dart';
 
 class HomeView extends StatefulWidget {
-  final int selectedIndex;
-  const HomeView({super.key, this.selectedIndex = 0});
+  const HomeView({super.key, this.indexPage = 0});
+  final int indexPage;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -31,6 +31,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final key = GlobalKey<ExpandableFabState>();
 
     return MultiBlocProvider(
@@ -39,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
           create: (context) => GetNameWidgetCubit()..getName(),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(),
+          create: (context) => HomeCubit(selectedIndex: widget.indexPage),
         ),
       ],
       child: SafeArea(
@@ -221,7 +222,7 @@ class _HomeViewState extends State<HomeView> {
                             textSize: 1000,
                           ),
                         ],
-                        selectedIndex: widget.selectedIndex,
+                        selectedIndex: context.read<HomeCubit>().selectedIndex,
                         onTabChange: (index) {
                           context.read<HomeCubit>().changeScreen(index);
                         },

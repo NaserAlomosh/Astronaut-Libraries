@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
-import 'package:pub_semver/pub_semver.dart';
 
 class PostDetailsView extends StatelessWidget {
   final String image;
@@ -92,7 +91,6 @@ class PostDetailsView extends StatelessWidget {
               Center(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 300,
                   child: Image.network(
                     image,
                     fit: BoxFit.cover,
@@ -155,8 +153,7 @@ class PostDetailsView extends StatelessWidget {
                 child: ReadMoreText(
                   description,
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                  ),
+                      color: Colors.white.withOpacity(0.8), fontSize: 14.sp),
                   trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: ' Show more',
@@ -180,7 +177,6 @@ class PostDetailsView extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              //
               const SizedBox(height: 10),
               CustomTwoButton(
                 firstColor: Colors.blue,
@@ -192,7 +188,8 @@ class PostDetailsView extends StatelessWidget {
                 lastOnTap: () {},
                 startAlin: true,
                 lastTitle: 'github',
-              )
+              ),
+              SizedBox(height: 10.h),
             ],
           ),
         ),

@@ -1,3 +1,5 @@
+import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
+import 'package:astronaut_libraries/view/home/home.dart';
 import 'package:astronaut_libraries/view_model/add_post/cubit.dart';
 import 'package:astronaut_libraries/view_model/add_post/states.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
@@ -36,7 +38,15 @@ class AddPostView extends StatelessWidget {
             Scaffold(
               backgroundColor: Colors.black.withOpacity(0.5),
               body: BlocConsumer<AddPostCubit, AddPostState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if (state is AddPostSucssesState) {
+                    AppNavigation().pushFade(
+                        context,
+                        const HomeView(
+                          indexPage: 3,
+                        ));
+                  }
+                },
                 builder: (context, state) {
                   if (state is AddPostLoadingState) {
                     return Center(
