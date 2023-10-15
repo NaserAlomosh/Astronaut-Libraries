@@ -1,4 +1,4 @@
-import 'package:astronaut_libraries/database/local/shared_preferences/shared_preferences.dart';
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:astronaut_libraries/model/user_data/user_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

@@ -1,5 +1,5 @@
 import 'package:astronaut_libraries/classes/cheak_is_not_null_value/cheak_is_not_null_value.dart';
-import 'package:astronaut_libraries/database/networking/sign_up/sign_up.dart';
+import 'package:astronaut_libraries/service/networking/sign_up/sign_up.dart';
 import 'package:astronaut_libraries/view_model/sign_up/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

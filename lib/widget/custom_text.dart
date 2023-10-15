@@ -29,18 +29,17 @@ class CustomText extends StatelessWidget {
             style: TextStyle(
               color: color?.withOpacity(0.8),
               fontSize: fontsize.sp,
-              overflow: TextOverflow.ellipsis,
+              overflow: viewMore ? TextOverflow.ellipsis : null,
             ),
           )
         : Padding(
             padding: EdgeInsets.only(left: 20.w),
             child: Text(
-              maxLines: 1,
               text,
               style: TextStyle(
                 color: color?.withOpacity(0.8),
                 fontSize: fontsize.sp,
-                overflow: TextOverflow.ellipsis,
+                overflow: viewMore ? TextOverflow.ellipsis : null,
               ),
             ),
           );

@@ -50,7 +50,7 @@ class AddPostView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const CustomText(
-                            text: 'What are you thinking about ?',
+                            text: 'What are you thinking about asghdjsa ?',
                             fontsize: 40,
                           ),
                           SizedBox(height: 20.h),

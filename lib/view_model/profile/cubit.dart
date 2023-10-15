@@ -1,4 +1,4 @@
-import 'package:astronaut_libraries/database/local/shared_preferences/shared_preferences.dart';
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'states.dart';

@@ -1,5 +1,5 @@
-import 'package:astronaut_libraries/database/local/shared_preferences/shared_preferences.dart';
-import 'package:astronaut_libraries/database/networking/get_post/get_post.dart';
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
+import 'package:astronaut_libraries/service/networking/get_post/get_post.dart';
 import 'package:astronaut_libraries/model/post/post_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

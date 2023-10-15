@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../database/networking/get_library/get_library.dart';
+import '../../service/networking/get_library/get_library.dart';
 import '../../model/library/library.dart';
 import 'states.dart';
 
