@@ -14,6 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
+  DateTime dateTime = DateTime.now();
+  print('dateTime.day####  ${dateTime.year}');
 
   //
   prefs = await SharedPreferences.getInstance();

@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/classes/posts_time_calculation/posts_time_calculation.dart';
 import 'package:astronaut_libraries/model/post/post_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -9,6 +10,7 @@ Future<List<dynamic>> getPost({
       .collection('users')
       .doc(userId)
       .collection('posts')
+      .orderBy('shareTime', descending: true)
       .get()
       .then((value) {
     for (var element in value.docs) {
@@ -16,5 +18,7 @@ Future<List<dynamic>> getPost({
       //
     }
   });
+  postsTimeCalculation(postModel[0].shareTime);
+
   return postModel;
 }

@@ -1,4 +1,5 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
+import 'package:astronaut_libraries/classes/posts_time_calculation/posts_time_calculation.dart';
 import 'package:astronaut_libraries/view/posts_details/post_details_view.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/cubit.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/states.dart';
@@ -132,6 +133,11 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                 AppNavigation().pushZoom(
                                   context,
                                   PostDetailsView(
+                                    datePost: postsTimeCalculation(context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .shareTime
+                                        .toString()),
                                     profileImage: profileImage!,
                                     image: context
                                         .read<GetPostsProfileCubit>()

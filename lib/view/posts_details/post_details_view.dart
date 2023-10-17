@@ -14,11 +14,14 @@ class PostDetailsView extends StatelessWidget {
 
   final String profileImage;
 
+  final String datePost;
+
   const PostDetailsView({
     super.key,
     required this.image,
     required this.description,
     required this.profileImage,
+    required this.datePost,
   });
 
   @override
@@ -166,6 +169,15 @@ class PostDetailsView extends StatelessWidget {
                     fontSize: 14.sp,
                     color: Colors.blueAccent,
                   ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: CustomText(
+                  text: datePost,
+                  fontsize: 14,
+                  textfield: true,
+                  color: Colors.grey,
                 ),
               ),
               Padding(

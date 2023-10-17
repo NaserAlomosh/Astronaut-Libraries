@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 String? url;
 Future<void> addPost({
@@ -41,5 +43,6 @@ Future<void> addPost({
     'image': url,
     'gitHubUrl': gitHubUrl,
     'pubDevUrl': pubDevUrl,
+    'shareTime': DateTime.now().toString(),
   });
 }
