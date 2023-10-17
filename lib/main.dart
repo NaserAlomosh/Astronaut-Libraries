@@ -14,9 +14,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
-  DateTime dateTime = DateTime.now();
-  print('dateTime.day####  ${dateTime.year}');
-
   //
   prefs = await SharedPreferences.getInstance();
 
@@ -58,4 +55,16 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+int calculateAge(DateTime birthDate) {
+  final now = DateTime.now();
+  int age = now.year - birthDate.year;
+
+  if (now.month < birthDate.month ||
+      (now.month == birthDate.month && now.day < birthDate.day)) {
+    age--; // Subtract one year if the birthdate has not occurred yet this year.
+  }
+
+  return age;
 }

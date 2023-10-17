@@ -1,38 +1,38 @@
 import 'package:intl/intl.dart';
 
+import '../age.dart';
+
 String postsTimeCalculation(String shareTime) {
   DateTime dateTime = DateTime.parse(shareTime);
-  return DateFormat.yMMMd().format(dateTime);
+  PostTime postTime = calculatePublishingTime(dateTime);
+  print('years ${postTime.years}');
+  print('days ${postTime.days}');
+  print('hours ${postTime.hours}');
+  print('minutes ${postTime.minutes}');
+  print('seconds ${postTime.seconds}');
+  if (postTime.years == 0) {
+    if (postTime.months == 0) {
+      if (postTime.days == 0) {
+        if (postTime.hours == 0) {
+          if (postTime.minutes == 0) {
+            if (postTime.seconds == 1) {
+              return 'now';
+            } else {
+              return '${postTime.seconds} seconds ago';
+            }
+          } else {
+            return '${postTime.minutes} minutes ago';
+          }
+        } else {
+          return '${postTime.hours} hours ago';
+        }
+      } else {
+        return '${postTime.days} days ago';
+      }
+    } else {
+      return DateFormat.MMMd().format(dateTime);
+    }
+  } else {
+    return DateFormat.yMMMd().format(dateTime);
+  }
 }
-  // DateTime now = DateTime.now();
-  // Duration difference = now.difference(dateTime);
-  // //
-  // int days = difference.inDays + 1;
-  // int hours = now.difference(dateTime).inHours + 1;
-  // int minutes = now.difference(dateTime).inMinutes + 1;
-  // int seconds = now.difference(dateTime).inSeconds + 1;
-  // //Start Cheak
-  // print('days : $days');
-  // print('hours : $hours');
-  // print('minutes : $minutes');
-  // print('seconds : $seconds');
-  // print('###################');
-  // if (days > 365) {
-  //   print('years ');
-  //   return DateFormat.yMMMd().format(dateTime);
-  // } else if (days > 30 && days <= 350) {
-  //   print('months');
-  //   return '${DateFormat.MMMd().format(dateTime)} ago';
-  // } else if (days > 1 && days <= 30) {
-  //   print('day');
-  //   return 'days${DateFormat.d().format(dateTime)} ago';
-  // } else if (hours <= 24 && hours >= 1) {
-  //   print('hours');
-  //   return 'h${DateFormat.H().format(dateTime)} ago';
-  // } else if (minutes <= 59 && minutes >= 1) {
-  //   print('minutes');
-  //   return 'min${DateFormat.m().format(dateTime)} ago';
-  // } else {
-  //   print('seconds');
-  //   return 'sec ${DateFormat.s().format(dateTime)} ago';
-  // }
