@@ -1,5 +1,5 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/classes/posts_time_calculation/posts_time_calculation.dart';
+import 'package:astronaut_libraries/classes/calculatePublishingTime/calculate_publishing_time.dart';
 import 'package:astronaut_libraries/view/posts_details/post_details_view.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/cubit.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/states.dart';
@@ -133,7 +133,23 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                 AppNavigation().pushZoom(
                                   context,
                                   PostDetailsView(
-                                    datePost: postsTimeCalculation(context
+                                    postId: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .postId,
+                                    userLike: context
+                                                .read<GetPostsProfileCubit>()
+                                                .postProfile[index]
+                                                .likes
+                                                .length ==
+                                            0
+                                        ? false
+                                        : context
+                                            .read<GetPostsProfileCubit>()
+                                            .postProfile[index]
+                                            .likes[index]
+                                            .like,
+                                    datePost: postsTime(context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
                                         .shareTime
@@ -142,11 +158,16 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                     image: context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
-                                        .image,
+                                        .image!,
+                                    like: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .likes
+                                        .length,
                                     description: context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
-                                        .description,
+                                        .description!,
                                   ),
                                 );
                               },
@@ -157,7 +178,7 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                   context
                                       .read<GetPostsProfileCubit>()
                                       .postProfile[index]
-                                      .image,
+                                      .image!,
                                   fit: BoxFit.cover,
                                 ),
                               ),

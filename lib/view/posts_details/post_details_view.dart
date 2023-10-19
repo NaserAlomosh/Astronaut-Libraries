@@ -1,20 +1,27 @@
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
+import 'package:astronaut_libraries/view_model/like_post/cubit.dart';
 import 'package:astronaut_libraries/widget/custom_icon.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
+import 'package:astronaut_libraries/widget/like_icon.dart';
 import 'package:astronaut_libraries/widget/two_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../view_model/like_post/states.dart';
+
 class PostDetailsView extends StatelessWidget {
   final String image;
-
   final String description;
-
   final String profileImage;
-
   final String datePost;
+  final int like;
+  final bool userLike;
+
+  final String postId;
 
   const PostDetailsView({
     super.key,
@@ -22,6 +29,9 @@ class PostDetailsView extends StatelessWidget {
     required this.description,
     required this.profileImage,
     required this.datePost,
+    required this.like,
+    required this.userLike,
+    required this.postId,
   });
 
   @override
@@ -101,43 +111,65 @@ class PostDetailsView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.h),
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                    child: const CustomIcons(
-                      color: Colors.red,
-                      icon: FontAwesomeIcons.solidHeart,
-                      size: 25,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                    child: const CustomIcons(
-                      icon: FontAwesomeIcons.comment,
-                      size: 25,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                    child: const CustomIcons(
-                      icon: FontAwesomeIcons.share,
-                      size: 25,
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.w,
-                ),
-                child: const CustomText(
-                  text: '54 Likes',
-                  fontsize: 18,
-                  textfield: true,
+              // like cubit
+              BlocProvider(
+                create: (context) => LikeCubit(userLike: userLike, likes: like),
+                child: BlocConsumer<LikeCubit, LikeState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5.w, vertical: 5.h),
+                              child: LikeIcon(
+                                userLike: context.read<LikeCubit>().userLike,
+                                onTap: () {
+                                  context.read<LikeCubit>().likeCubit(
+                                        getSharedPreferences('id'),
+                                        postId,
+                                      );
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5.w, vertical: 5.h),
+                              child: const CustomIcons(
+                                icon: FontAwesomeIcons.comment,
+                                size: 25,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5.w, vertical: 5.h),
+                              child: const CustomIcons(
+                                icon: FontAwesomeIcons.share,
+                                size: 25,
+                              ),
+                            ),
+                          ],
+                        ),
+                        context.read<LikeCubit>().likes != 0
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 5.w,
+                                ),
+                                child: CustomText(
+                                  text: context.read<LikeCubit>().likes == 1
+                                      ? '${context.read<LikeCubit>().likes} like'
+                                      : '$context.read<LikeCubit>().likes likes',
+                                  fontsize: 18,
+                                  textfield: true,
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 5.h),

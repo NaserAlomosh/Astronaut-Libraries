@@ -12,7 +12,6 @@ class GetPostsProfileCubit extends Cubit<GetPostsProfileState> {
     try {
       emit(GetPostsProfileLoading());
       postProfile = await getPost(userId: userId);
-
       emit(GetPostsProfilSucsses());
     } catch (_) {
       emit(GetPostsProfileError());

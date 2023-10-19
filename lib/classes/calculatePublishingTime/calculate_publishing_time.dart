@@ -1,8 +1,7 @@
+import 'package:astronaut_libraries/model/post_time/post_time.dart';
 import 'package:intl/intl.dart';
 
-import '../age.dart';
-
-String postsTimeCalculation(String shareTime) {
+String postsTime(String shareTime) {
   DateTime dateTime = DateTime.parse(shareTime);
   PostTime postTime = calculatePublishingTime(dateTime);
   print('years ${postTime.years}');
@@ -35,4 +34,24 @@ String postsTimeCalculation(String shareTime) {
   } else {
     return DateFormat.yMMMd().format(dateTime);
   }
+}
+
+PostTime calculatePublishingTime(DateTime birthDate) {
+  final now = DateTime.now();
+  final difference = now.difference(birthDate);
+  final years = difference.inDays ~/ 365;
+  final months = (difference.inDays % 365) ~/ 30;
+  final days = (difference.inDays % 365) % 30;
+  final hours = difference.inHours % 24;
+  final minutes = difference.inMinutes % 60;
+  final seconds = difference.inSeconds % 60;
+
+  return PostTime(
+    years: years,
+    months: months,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
+  );
 }
