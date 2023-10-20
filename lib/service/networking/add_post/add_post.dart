@@ -44,4 +44,14 @@ Future<void> addPost({
     'shareTime': DateTime.now().toString(),
     'likes': []
   });
+  await FirebaseFirestore.instance.collection('posts').doc('$userId').set({
+    'userId': userId,
+    'postId': postDoc,
+    'description': description,
+    'image': url,
+    'gitHubUrl': gitHubUrl,
+    'pubDevUrl': pubDevUrl,
+    'shareTime': DateTime.now().toString(),
+    'likes': []
+  });
 }

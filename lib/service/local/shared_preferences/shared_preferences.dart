@@ -16,7 +16,6 @@ setSharedPreferences(String key, dynamic value) async {
 
 dynamic getSharedPreferences(String key) {
   dynamic data = prefs!.get(key);
-  print('Get Shared Preferences $key :  $data');
   return data;
 }
 

@@ -15,7 +15,6 @@ Future<List<PostModel>> getPost({
       .then((value) {
     for (var element in value.docs) {
       postModel.add(PostModel.fromJosn(element.data()));
-      print(postModel[0].likes.length);
     }
   });
 

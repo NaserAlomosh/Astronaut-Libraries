@@ -18,10 +18,11 @@ class PostDetailsView extends StatelessWidget {
   final String description;
   final String profileImage;
   final String datePost;
-  final int like;
-  final bool userLike;
+  final int likeNumber;
 
   final String postId;
+
+  final String postUserId;
 
   const PostDetailsView({
     super.key,
@@ -29,9 +30,9 @@ class PostDetailsView extends StatelessWidget {
     required this.description,
     required this.profileImage,
     required this.datePost,
-    required this.like,
-    required this.userLike,
+    required this.likeNumber,
     required this.postId,
+    required this.postUserId,
   });
 
   @override
@@ -113,62 +114,69 @@ class PostDetailsView extends StatelessWidget {
               SizedBox(height: 10.h),
               // like cubit
               BlocProvider(
-                create: (context) => LikeCubit(userLike: userLike, likes: like),
+                create: (context) => LikeCubit(likes: likeNumber)
+                  ..liked(postId: postId, postUserId: postUserId),
                 child: BlocConsumer<LikeCubit, LikeState>(
                   listener: (context, state) {},
                   builder: (context, state) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 5.h),
-                              child: LikeIcon(
-                                userLike: context.read<LikeCubit>().userLike,
-                                onTap: () {
-                                  context.read<LikeCubit>().likeCubit(
-                                        getSharedPreferences('id'),
-                                        postId,
-                                      );
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 5.h),
-                              child: const CustomIcons(
-                                icon: FontAwesomeIcons.comment,
-                                size: 25,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 5.h),
-                              child: const CustomIcons(
-                                icon: FontAwesomeIcons.share,
-                                size: 25,
-                              ),
-                            ),
-                          ],
-                        ),
-                        context.read<LikeCubit>().likes != 0
-                            ? Padding(
+                    if (state is LikeLoadingState) {
+                      return Center(
+                        child: Lottie.asset('assets/loading.json'),
+                      );
+                    } else {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w,
+                                    horizontal: 5.w, vertical: 5.h),
+                                child: LikeIcon(
+                                  userLike: context.read<LikeCubit>().userLike,
+                                  onTap: () {
+                                    context.read<LikeCubit>().likeCubit(
+                                          postId,
+                                          getSharedPreferences('id'),
+                                        );
+                                  },
                                 ),
-                                child: CustomText(
-                                  text: context.read<LikeCubit>().likes == 1
-                                      ? '${context.read<LikeCubit>().likes} like'
-                                      : '$context.read<LikeCubit>().likes likes',
-                                  fontsize: 18,
-                                  textfield: true,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5.w, vertical: 5.h),
+                                child: const CustomIcons(
+                                  icon: FontAwesomeIcons.comment,
+                                  size: 25,
                                 ),
-                              )
-                            : const SizedBox(),
-                      ],
-                    );
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5.w, vertical: 5.h),
+                                child: const CustomIcons(
+                                  icon: FontAwesomeIcons.share,
+                                  size: 25,
+                                ),
+                              ),
+                            ],
+                          ),
+                          context.read<LikeCubit>().likes != 0
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 5.w,
+                                  ),
+                                  child: CustomText(
+                                    text: context.read<LikeCubit>().likes == 1
+                                        ? '${context.read<LikeCubit>().likes} like'
+                                        : '${context.read<LikeCubit>().likes} likes',
+                                    fontsize: 18,
+                                    textfield: true,
+                                  ),
+                                )
+                              : const SizedBox(),
+                        ],
+                      );
+                    }
                   },
                 ),
               ),

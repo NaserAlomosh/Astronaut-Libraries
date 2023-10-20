@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LikeIcon extends StatelessWidget {
   final void Function() onTap;
-  final bool userLike;
+  final bool? userLike;
   const LikeIcon({super.key, required this.userLike, required this.onTap});
 
   @override
@@ -11,8 +11,12 @@ class LikeIcon extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Icon(
-        userLike ? Icons.favorite : Icons.favorite_border,
-        color: userLike == true ? Colors.red : Colors.white.withOpacity(0.8),
+        userLike == null
+            ? Icons.favorite_border
+            : (userLike! ? Icons.favorite : Icons.favorite_border),
+        color: userLike == null
+            ? Colors.white.withOpacity(0.8)
+            : (userLike == true ? Colors.red : Colors.white.withOpacity(0.8)),
         size: 26.sp,
       ),
     );

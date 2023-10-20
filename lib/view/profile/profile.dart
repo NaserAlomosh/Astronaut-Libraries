@@ -133,22 +133,16 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                 AppNavigation().pushZoom(
                                   context,
                                   PostDetailsView(
+                                    postUserId: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .userId
+                                        .toString(),
                                     postId: context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
-                                        .postId,
-                                    userLike: context
-                                                .read<GetPostsProfileCubit>()
-                                                .postProfile[index]
-                                                .likes
-                                                .length ==
-                                            0
-                                        ? false
-                                        : context
-                                            .read<GetPostsProfileCubit>()
-                                            .postProfile[index]
-                                            .likes[index]
-                                            .like,
+                                        .postId
+                                        .toString(),
                                     datePost: postsTime(context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
@@ -159,7 +153,7 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
                                         .image!,
-                                    like: context
+                                    likeNumber: context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
                                         .likes

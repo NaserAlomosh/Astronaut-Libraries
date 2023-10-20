@@ -5,21 +5,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LikeCubit extends Cubit<LikeState> {
   LikeCubit({
     required this.likes,
-    required this.userLike,
   }) : super(LikeInitial());
-  bool userLike;
+  bool? userLike;
   int likes;
-  likeCubit(String postUserId, String postId) async {
-    if (userLike) {
-      likes = likes - 1;
-      userLike = false;
-      emit(LikeSucssesState());
-      await removeLikePost(postUserId, postId);
-    } else {
+  liked({String? postId, String? postUserId}) async {
+    userLike = await likedPost(postId: postId, postUserId: postUserId);
+    emit(LikeSucssesState());
+  }
+
+  likeCubit(String postId, String userPostId) async {
+    if (userLike == false || userLike == null) {
       likes = likes + 1;
       userLike = true;
       emit(LikeSucssesState());
-      await sendLikePost(postUserId, postId);
+      await sendLikePost(postId, userPostId);
+    } else {
+      likes = likes - 1;
+      userLike = false;
+      emit(LikeSucssesState());
+      await removeLikePost(postId, userPostId);
     }
   }
 }
