@@ -45,50 +45,28 @@ class ProfileView extends StatelessWidget {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
-                  color: Colors.transparent,
                   child: ContainedTabBarView(
                     tabs: const [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomText(
-                              text: '1078', fontsize: 10, textfield: true),
+                              text: 'Posts', fontsize: 12, textfield: true),
                           CustomText(
-                              text: 'Posts', fontsize: 10, textfield: true)
+                              text: '1078', fontsize: 12, textfield: true),
                         ],
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                              text: '267', fontsize: 10, textfield: true),
-                          CustomText(
-                              text: 'Followers', fontsize: 10, textfield: true)
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                              text: '326', fontsize: 10, textfield: true),
-                          CustomText(
-                              text: 'Folowing', fontsize: 10, textfield: true)
-                        ],
-                      )
                     ],
                     views: [
                       builderPostsWidget(
                         context,
                         context.read<ProfileCubit>().image.toString(),
                       ),
-                      builderFolowersWidget(context),
-                      builderFolowingWidget(context),
                     ],
                     tabBarProperties: TabBarProperties(
                       height: 50.h,
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.w),
-                        color: Colors.grey.withOpacity(0.2),
                       ),
                     ),
                   ),
@@ -192,75 +170,75 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
   );
 }
 
-Widget builderFolowersWidget(BuildContext context) {
-  return ListView.builder(
-    itemBuilder: (context, index) => Column(
-      children: [
-        ListTile(
-          leading: SizedBox(
-            width: 50,
-            height: 50,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(200),
-              child: Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          title: const Text('Naser Alomosh'),
-          trailing: Container(
-            color: Colors.grey.withOpacity(0.2),
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('Remove'),
-            ),
-          ),
-        ),
-        const Divider(
-          height: 20,
-          color: Colors.grey,
-        ),
-      ],
-    ),
-    itemCount: 30,
-  );
-}
+// Widget builderFolowersWidget(BuildContext context) {
+//   return ListView.builder(
+//     itemBuilder: (context, index) => Column(
+//       children: [
+//         ListTile(
+//           leading: SizedBox(
+//             width: 50,
+//             height: 50,
+//             child: ClipRRect(
+//               borderRadius: BorderRadius.circular(200),
+//               child: Image.network(
+//                 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//           ),
+//           title: const Text('Naser Alomosh'),
+//           trailing: Container(
+//             color: Colors.grey.withOpacity(0.2),
+//             child: const Padding(
+//               padding: EdgeInsets.all(8.0),
+//               child: Text('Remove'),
+//             ),
+//           ),
+//         ),
+//         const Divider(
+//           height: 20,
+//           color: Colors.grey,
+//         ),
+//       ],
+//     ),
+//     itemCount: 30,
+//   );
+// }
 
-Widget builderFolowingWidget(BuildContext context) {
-  return ListView.builder(
-    itemBuilder: (context, index) => Column(
-      children: [
-        ListTile(
-          leading: SizedBox(
-            width: 50,
-            height: 50,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(200),
-              child: Image.network(
-                'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          title: const Text('Naser Alomosh'),
-          trailing: Container(
-            color: Colors.grey.withOpacity(0.2),
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('Folowing'),
-            ),
-          ),
-        ),
-        const Divider(
-          height: 20,
-          color: Colors.grey,
-        ),
-      ],
-    ),
-    itemCount: 30,
-  );
-}
+// Widget builderFolowingWidget(BuildContext context) {
+//   return ListView.builder(
+//     itemBuilder: (context, index) => Column(
+//       children: [
+//         ListTile(
+//           leading: SizedBox(
+//             width: 50,
+//             height: 50,
+//             child: ClipRRect(
+//               borderRadius: BorderRadius.circular(200),
+//               child: Image.network(
+//                 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//           ),
+//           title: const Text('Naser Alomosh'),
+//           trailing: Container(
+//             color: Colors.grey.withOpacity(0.2),
+//             child: const Padding(
+//               padding: EdgeInsets.all(8.0),
+//               child: Text('Folowing'),
+//             ),
+//           ),
+//         ),
+//         const Divider(
+//           height: 20,
+//           color: Colors.grey,
+//         ),
+//       ],
+//     ),
+//     itemCount: 30,
+//   );
+// }
 
 
 // context

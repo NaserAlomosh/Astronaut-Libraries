@@ -3,7 +3,6 @@ import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
@@ -31,9 +30,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    final key = GlobalKey<ExpandableFabState>();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(

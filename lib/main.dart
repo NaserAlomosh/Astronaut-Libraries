@@ -15,6 +15,7 @@ void main() async {
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   //
+
   prefs = await SharedPreferences.getInstance();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

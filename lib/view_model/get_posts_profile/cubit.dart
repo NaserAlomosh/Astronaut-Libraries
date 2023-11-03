@@ -3,7 +3,6 @@ import 'package:astronaut_libraries/service/local/shared_preferences/shared_pref
 import 'package:astronaut_libraries/service/networking/get_post/get_post.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../service/networking/like_post/like_post.dart';
 import 'states.dart';
 
 class GetPostsProfileCubit extends Cubit<GetPostsProfileState> {

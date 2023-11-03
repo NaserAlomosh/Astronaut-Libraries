@@ -1,8 +1,10 @@
+import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
 import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:astronaut_libraries/view_model/like_post/cubit.dart';
 import 'package:astronaut_libraries/widget/custom_icon.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:astronaut_libraries/widget/like_icon.dart';
+import 'package:astronaut_libraries/widget/share_icon.dart';
 import 'package:astronaut_libraries/widget/two_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +14,7 @@ import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../view_model/like_post/states.dart';
+import '../search_user/search_user.dart';
 
 class PostDetailsView extends StatelessWidget {
   final String image;
@@ -152,10 +155,14 @@ class PostDetailsView extends StatelessWidget {
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 5.w, vertical: 5.h),
-                                child: const CustomIcons(
-                                  icon: FontAwesomeIcons.share,
-                                  size: 25,
+                                  horizontal: 5.w,
+                                  vertical: 5.h,
+                                ),
+                                child: ShareIcon(
+                                  onTap: () {
+                                    AppNavigation().pushDownToUp(
+                                        context, const SearchUser());
+                                  },
                                 ),
                               ),
                             ],
