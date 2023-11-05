@@ -42,7 +42,8 @@ Future<void> addPost({
     'gitHubUrl': gitHubUrl,
     'pubDevUrl': pubDevUrl,
     'shareTime': DateTime.now().toString(),
-    'likes': []
+    'likes': [],
+    'name': await getSharedPreferences('name'),
   });
   await FirebaseFirestore.instance.collection('posts').doc('$userId').set({
     'userId': userId,
@@ -52,6 +53,7 @@ Future<void> addPost({
     'gitHubUrl': gitHubUrl,
     'pubDevUrl': pubDevUrl,
     'shareTime': DateTime.now().toString(),
-    'likes': []
+    'likes': [],
+    'name': await getSharedPreferences('name'),
   });
 }

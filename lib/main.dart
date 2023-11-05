@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/service/networking/get_chats/get_chats.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,8 @@ void main() async {
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   //
-
   prefs = await SharedPreferences.getInstance();
-
+  await getChats();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));

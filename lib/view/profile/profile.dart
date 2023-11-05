@@ -58,10 +58,8 @@ class ProfileView extends StatelessWidget {
                       ),
                     ],
                     views: [
-                      builderPostsWidget(
-                        context,
-                        context.read<ProfileCubit>().image.toString(),
-                      ),
+                      builderPostsWidget(context,
+                          context.read<ProfileCubit>().image.toString(), null),
                     ],
                     tabBarProperties: TabBarProperties(
                       height: 50.h,
@@ -80,9 +78,10 @@ class ProfileView extends StatelessWidget {
   }
 }
 
-Widget builderPostsWidget(BuildContext context, String? profileImage) {
+Widget builderPostsWidget(
+    BuildContext context, String? profileImage, String? userId) {
   return BlocProvider(
-    create: (context) => GetPostsProfileCubit()..getPostsProfileCubit(),
+    create: (context) => GetPostsProfileCubit()..getPostsProfileCubit(userId),
     child: BlocConsumer<GetPostsProfileCubit, GetPostsProfileState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -111,6 +110,21 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
                                 AppNavigation().pushZoom(
                                   context,
                                   PostDetailsView(
+                                    name: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .name
+                                        .toString(),
+                                    pubDevUrl: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .pubDevUrl
+                                        .toString(),
+                                    gitHubUrl: context
+                                        .read<GetPostsProfileCubit>()
+                                        .postProfile[index]
+                                        .gitHubUrl
+                                        .toString(),
                                     postUserId: context
                                         .read<GetPostsProfileCubit>()
                                         .postProfile[index]
@@ -169,87 +183,3 @@ Widget builderPostsWidget(BuildContext context, String? profileImage) {
     ),
   );
 }
-
-// Widget builderFolowersWidget(BuildContext context) {
-//   return ListView.builder(
-//     itemBuilder: (context, index) => Column(
-//       children: [
-//         ListTile(
-//           leading: SizedBox(
-//             width: 50,
-//             height: 50,
-//             child: ClipRRect(
-//               borderRadius: BorderRadius.circular(200),
-//               child: Image.network(
-//                 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-//                 fit: BoxFit.cover,
-//               ),
-//             ),
-//           ),
-//           title: const Text('Naser Alomosh'),
-//           trailing: Container(
-//             color: Colors.grey.withOpacity(0.2),
-//             child: const Padding(
-//               padding: EdgeInsets.all(8.0),
-//               child: Text('Remove'),
-//             ),
-//           ),
-//         ),
-//         const Divider(
-//           height: 20,
-//           color: Colors.grey,
-//         ),
-//       ],
-//     ),
-//     itemCount: 30,
-//   );
-// }
-
-// Widget builderFolowingWidget(BuildContext context) {
-//   return ListView.builder(
-//     itemBuilder: (context, index) => Column(
-//       children: [
-//         ListTile(
-//           leading: SizedBox(
-//             width: 50,
-//             height: 50,
-//             child: ClipRRect(
-//               borderRadius: BorderRadius.circular(200),
-//               child: Image.network(
-//                 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-//                 fit: BoxFit.cover,
-//               ),
-//             ),
-//           ),
-//           title: const Text('Naser Alomosh'),
-//           trailing: Container(
-//             color: Colors.grey.withOpacity(0.2),
-//             child: const Padding(
-//               padding: EdgeInsets.all(8.0),
-//               child: Text('Folowing'),
-//             ),
-//           ),
-//         ),
-//         const Divider(
-//           height: 20,
-//           color: Colors.grey,
-//         ),
-//       ],
-//     ),
-//     itemCount: 30,
-//   );
-// }
-
-
-// context
-//                         .read<GetPostsProfileCubit>()
-//                         .postProfile
-//                         .map((e) => InkWell(
-//                               onTap: () {
-//                                 AppNavigation()
-//                                     .pushZoom(context, const PostDetailsView());
-//                               },
-//                               //
-//                               child: Image.network(e.toString()),
-//                             ))
-//                         .toList()

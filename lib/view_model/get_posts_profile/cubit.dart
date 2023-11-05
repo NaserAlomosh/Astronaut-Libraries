@@ -8,11 +8,11 @@ import 'states.dart';
 class GetPostsProfileCubit extends Cubit<GetPostsProfileState> {
   GetPostsProfileCubit() : super(GetPostsProfileInitial());
   List<PostModel> postProfile = [];
-  getPostsProfileCubit() async {
-    var userId = await getSharedPreferences('id');
+  getPostsProfileCubit(String? userId) async {
+    var id = await getSharedPreferences('id');
     try {
       emit(GetPostsProfileLoading());
-      postProfile = await getPost(userId: userId);
+      postProfile = await getPost(userId: userId ?? id);
 
       emit(GetPostsProfilSucsses());
     } catch (_) {

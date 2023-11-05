@@ -1,4 +1,6 @@
+import 'package:astronaut_libraries/view/direct/direct.dart';
 import 'package:astronaut_libraries/view/profile/profile.dart';
+import 'package:astronaut_libraries/view/search_user/search_user.dart';
 import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
 import 'package:flutter/material.dart';
@@ -160,14 +162,19 @@ class _HomeViewState extends State<HomeView> {
                         onPressed: () => Scaffold.of(context).openDrawer(),
                       ),
                     ),
-                    actions: const [
-                      Icon(Icons.search),
+                    actions: [
+                      InkWell(
+                          onTap: () {
+                            AppNavigation().pushRightToLeftWithFade(
+                                context, const Direct());
+                          },
+                          child: CustomIcons(icon: Icons.chat, size: 20.sp)),
                     ],
                   ),
                   body: [
                     const HomePostsView(),
                     Container(),
-                    Container(),
+                    const SearchUser(searchPage: true),
                     const ProfileView(),
                   ][context.read<HomeCubit>().selectedIndex],
                   bottomNavigationBar: Container(

@@ -22,10 +22,12 @@ class PostDetailsView extends StatelessWidget {
   final String profileImage;
   final String datePost;
   final int likeNumber;
-
   final String postId;
-
   final String postUserId;
+  final String gitHubUrl;
+  final String pubDevUrl;
+
+  final String name;
 
   const PostDetailsView({
     super.key,
@@ -36,6 +38,9 @@ class PostDetailsView extends StatelessWidget {
     required this.likeNumber,
     required this.postId,
     required this.postUserId,
+    required this.gitHubUrl,
+    required this.pubDevUrl,
+    required this.name,
   });
 
   @override
@@ -87,8 +92,8 @@ class PostDetailsView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 10.w),
-                        const CustomText(
-                          text: 'Naser Alomosh',
+                        CustomText(
+                          text: name,
                           fontsize: 16,
                           textfield: true,
                         ),
@@ -161,7 +166,19 @@ class PostDetailsView extends StatelessWidget {
                                 child: ShareIcon(
                                   onTap: () {
                                     AppNavigation().pushDownToUp(
-                                        context, const SearchUser());
+                                        context,
+                                        SearchUser(
+                                          pubDevUrl: pubDevUrl,
+                                          gitHubUrl: gitHubUrl,
+                                          datePost: datePost,
+                                          description: description,
+                                          likeNumber: likeNumber,
+                                          postId: postId,
+                                          postImage: image,
+                                          postUserId: postUserId,
+                                          profileImage: profileImage,
+                                          searchPage: false,
+                                        ));
                                   },
                                 ),
                               ),
