@@ -2,24 +2,14 @@ class PostModel {
   String? shareTime;
   String? postId;
   String? image;
-  String? gitHubUrl;
-  String? pubDevUrl;
   String? userId;
-  String? description;
   String? name;
-  List<dynamic> likes = [];
   PostModel.fromJosn(Map<String, dynamic> json) {
     shareTime = json["shareTime"];
     postId = json["postId"];
     image = json["image"];
-    gitHubUrl = json["gitHubUrl"];
-    pubDevUrl = json["pubDevUrl"];
     userId = json["userId"];
     name = json["name"];
-    description = json["description"];
-    for (var element in json['likes']) {
-      likes.add(LikesModel.fromJosn(element));
-    }
   }
 }
 

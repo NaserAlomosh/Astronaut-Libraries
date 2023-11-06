@@ -18,6 +18,7 @@ import '../../widget/custom_icon.dart';
 import '../../widget/home_widget.dart';
 import '../add_name_widget_view/add_name_widget.dart';
 import '../add_post_view/add_post_view.dart';
+import '../favorite/favorite.dart';
 import '../home_posts_view/home_posts_view.dart';
 import '../librarys/librarys_view.dart';
 
@@ -173,7 +174,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   body: [
                     const HomePostsView(),
-                    Container(),
+                    const FavoriteView(),
                     const SearchUser(searchPage: true),
                     const ProfileView(),
                   ][context.read<HomeCubit>().selectedIndex],

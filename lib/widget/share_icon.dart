@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ShareIcon extends StatelessWidget {
   final void Function() onTap;
@@ -12,7 +11,7 @@ class ShareIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Icon(
-        FontAwesomeIcons.share,
+        Icons.share_sharp,
         color: Colors.white.withOpacity(0.8),
         size: 26.sp,
       ),

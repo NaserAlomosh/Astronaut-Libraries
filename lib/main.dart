@@ -1,4 +1,3 @@
-import 'package:astronaut_libraries/service/networking/get_chats/get_chats.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'style/color_app.dart';
 
 SharedPreferences? prefs;
@@ -15,9 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
-  //
   prefs = await SharedPreferences.getInstance();
-  await getChats();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));

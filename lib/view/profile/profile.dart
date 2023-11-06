@@ -91,91 +91,68 @@ Widget builderPostsWidget(
           );
         } else {
           return SingleChildScrollView(
-            child: Column(
-              children: [
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
-                  crossAxisCount: 3,
-                  children: List.generate(
-                    context.read<GetPostsProfileCubit>().postProfile.length,
-                    (index) => SizedBox(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                AppNavigation().pushZoom(
-                                  context,
-                                  PostDetailsView(
-                                    name: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .name
-                                        .toString(),
-                                    pubDevUrl: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .pubDevUrl
-                                        .toString(),
-                                    gitHubUrl: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .gitHubUrl
-                                        .toString(),
-                                    postUserId: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .userId
-                                        .toString(),
-                                    postId: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .postId
-                                        .toString(),
-                                    datePost: postsTime(context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .shareTime
-                                        .toString()),
-                                    profileImage: profileImage!,
-                                    image: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .image!,
-                                    likeNumber: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .likes
-                                        .length,
-                                    description: context
-                                        .read<GetPostsProfileCubit>()
-                                        .postProfile[index]
-                                        .description!,
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                color: Colors.white10,
-                                child: Image.network(
-                                  context
-                                      .read<GetPostsProfileCubit>()
-                                      .postProfile[index]
-                                      .image!,
-                                  fit: BoxFit.cover,
-                                ),
+            child: GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
+              crossAxisCount: 3,
+              children: List.generate(
+                context.read<GetPostsProfileCubit>().postProfile.length,
+                (index) => SizedBox(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            AppNavigation().pushZoom(
+                              context,
+                              PostDetailsView(
+                                name: context
+                                    .read<GetPostsProfileCubit>()
+                                    .postProfile[index]
+                                    .name
+                                    .toString(),
+                                postUserId: context
+                                    .read<GetPostsProfileCubit>()
+                                    .postProfile[index]
+                                    .userId
+                                    .toString(),
+                                postId: context
+                                    .read<GetPostsProfileCubit>()
+                                    .postProfile[index]
+                                    .postId
+                                    .toString(),
+                                datePost: postsTime(context
+                                    .read<GetPostsProfileCubit>()
+                                    .postProfile[index]
+                                    .shareTime
+                                    .toString()),
+                                profileImage: profileImage!,
+                                image: context
+                                    .read<GetPostsProfileCubit>()
+                                    .postProfile[index]
+                                    .image!,
                               ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            color: Colors.white10,
+                            child: Image.network(
+                              context
+                                  .read<GetPostsProfileCubit>()
+                                  .postProfile[index]
+                                  .image!,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           );
         }

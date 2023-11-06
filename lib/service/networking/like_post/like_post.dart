@@ -1,4 +1,3 @@
-import 'package:astronaut_libraries/model/post/post_model.dart';
 import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -59,20 +58,4 @@ Future<void> removeLikePost(
       });
     }
   }
-}
-
-Future<bool> likedPost({String? postId, String? postUserId}) async {
-  var posts = await FirebaseFirestore.instance
-      .collection('users')
-      .doc(postUserId)
-      .collection('posts')
-      .doc(postId)
-      .get();
-  PostModel postData = PostModel.fromJosn(posts.data()!);
-  for (var i = 0; i < postData.likes.length; i++) {
-    if (postData.likes[i].id == getSharedPreferences('id')) {
-      return true;
-    }
-  }
-  return false;
 }
