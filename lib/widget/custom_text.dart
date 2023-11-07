@@ -25,7 +25,7 @@ class CustomText extends StatelessWidget {
     return textfield == true
         ? Text(
             text,
-            maxLines: 1,
+            maxLines: viewMore ? 1000 : 1,
             style: TextStyle(
               color: color?.withOpacity(0.8),
               fontSize: fontsize.sp,

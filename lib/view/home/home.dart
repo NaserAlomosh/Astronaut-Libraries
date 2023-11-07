@@ -62,8 +62,10 @@ class _HomeViewState extends State<HomeView> {
                               backgroundColor: Colors.white.withOpacity(0.3),
                               child: const Icon(Icons.add),
                               onPressed: () {
-                                AppNavigation()
-                                    .pushDownToUp(context, const AddPostView());
+                                AppNavigation().pushDownToUp(
+                                  context,
+                                  const AddPostView(),
+                                );
                               },
                             )
                           : null,
@@ -165,11 +167,14 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     actions: [
                       InkWell(
-                          onTap: () {
-                            AppNavigation().pushRightToLeftWithFade(
-                                context, const Direct());
-                          },
-                          child: CustomIcons(icon: Icons.chat, size: 20.sp)),
+                        onTap: () {
+                          AppNavigation().pushRightToLeftWithFade(
+                            context,
+                            const Direct(),
+                          );
+                        },
+                        child: CustomIcons(icon: Icons.chat, size: 20.sp),
+                      ),
                     ],
                   ),
                   body: [
@@ -258,7 +263,10 @@ Widget builderHomeWidget(BuildContext context) {
               lable: 'Profile',
               icon: Icons.person,
               onTap: () {
-                AppNavigation().push(context, const ProfileView());
+                AppNavigation().push(
+                  context,
+                  const ProfileView(),
+                );
               },
             ),
             CustemHomeWidget(

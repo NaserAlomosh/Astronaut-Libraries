@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../widget/test_detilse.dart';
+import '../../widget/detilse_widget.dart';
 
 class LibraryDetails extends StatelessWidget {
   final String image;
