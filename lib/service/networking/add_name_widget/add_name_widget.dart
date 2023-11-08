@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> addNameLibrary(
+Future<void> addNameWidget(
   String type,
 ) async {
   FirebaseFirestore.instance

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../classes/cheak_is_not_null_value/cheak_is_not_null_value.dart';
 import '../../constant/string/admin_information.dart';
-import '../../service/networking/add_name_library/add_name_library.dart';
-import '../../service/networking/add_name_library/check_name_exists.dart';
-import '../../service/networking/get_name_libraray/get_name_library.dart';
+import '../../service/networking/add_name_widget/add_name_widget.dart';
+import '../../service/networking/add_name_widget/check_name_exists.dart';
+import '../../service/networking/get_name_widget/get_name_widget.dart';
 import 'states.dart';
 
 class AddNameLibraryCubit extends Cubit<AddNameLibraryState> {
@@ -26,7 +26,7 @@ class AddNameLibraryCubit extends Cubit<AddNameLibraryState> {
     } else {
       if (cheakTowTextfiald(type, confirmtype)) {
         if (cheakTowTextfiald(ADMIN_PASSWORD, adminPassword)) {
-          await addNameLibrary(type).then(
+          await addNameWidget(type).then(
             (value) async {
               await getWidgetName();
               type = typeWidget;

@@ -31,9 +31,11 @@ class ProfileView extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 40.sp,
                   backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(
-                    context.read<ProfileCubit>().image.toString(),
-                  ),
+                  backgroundImage: context.read<ProfileCubit>().image == null
+                      ? null
+                      : NetworkImage(
+                          context.read<ProfileCubit>().image.toString(),
+                        ),
                 ),
               ),
               SizedBox(height: 10.h),

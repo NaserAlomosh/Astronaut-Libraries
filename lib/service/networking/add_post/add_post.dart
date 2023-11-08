@@ -11,49 +11,53 @@ Future<void> addPost({
   String? gitHubUrl,
   String? pubDevUrl,
 }) async {
-  var userId = getSharedPreferences('id');
-  String? postDoc;
-  FirebaseFirestore.instance
-      .collection('users')
-      .doc('$userId')
-      .collection('posts')
-      .add({}).then((DocumentReference doc) async {
-    postDoc = doc.id;
-  });
+  try {
+    var userId = getSharedPreferences('id');
+    String? postDoc;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('posts')
+        .add({}).then((DocumentReference doc) async {
+      postDoc = doc.id;
+    });
 
-  ///Check Image///
-  if (image != null) {
-    var refStoreg = FirebaseStorage.instance.ref("images/$image");
-    await refStoreg.putFile(image);
-    url = await refStoreg.getDownloadURL();
+    ///Check Image///
+    if (image != null) {
+      var refStoreg = FirebaseStorage.instance.ref("images/$image");
+      await refStoreg.putFile(image);
+      url = await refStoreg.getDownloadURL();
+    }
+
+    ///Add Post///
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc('$userId')
+        .collection('posts')
+        .doc(postDoc)
+        .set({
+      'userId': userId,
+      'postId': postDoc,
+      'description': description,
+      'image': url,
+      'gitHubUrl': gitHubUrl,
+      'pubDevUrl': pubDevUrl,
+      'shareTime': DateTime.now().toString(),
+      'likes': [],
+      'name': getSharedPreferences('name'),
+    });
+    await FirebaseFirestore.instance.collection('posts').doc(userId).set({
+      'userId': userId,
+      'postId': postDoc,
+      'description': description,
+      'image': url,
+      'gitHubUrl': gitHubUrl,
+      'pubDevUrl': pubDevUrl,
+      'shareTime': DateTime.now().toString(),
+      'likes': [],
+      'name': getSharedPreferences('name'),
+    });
+  } catch (e) {
+    print('Add Post Error : $e');
   }
-
-  ///Add Post///
-  await FirebaseFirestore.instance
-      .collection('users')
-      .doc('$userId')
-      .collection('posts')
-      .doc(postDoc)
-      .set({
-    'userId': userId,
-    'postId': postDoc,
-    'description': description,
-    'image': url,
-    'gitHubUrl': gitHubUrl,
-    'pubDevUrl': pubDevUrl,
-    'shareTime': DateTime.now().toString(),
-    'likes': [],
-    'name': await getSharedPreferences('name'),
-  });
-  await FirebaseFirestore.instance.collection('posts').doc('$userId').set({
-    'userId': userId,
-    'postId': postDoc,
-    'description': description,
-    'image': url,
-    'gitHubUrl': gitHubUrl,
-    'pubDevUrl': pubDevUrl,
-    'shareTime': DateTime.now().toString(),
-    'likes': [],
-    'name': await getSharedPreferences('name'),
-  });
 }

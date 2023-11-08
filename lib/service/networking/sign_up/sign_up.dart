@@ -26,7 +26,7 @@ Future<void> signUp({
   }).then((a) async {
     await setSharedPreferences('name', '$firstName $lastName');
     await setSharedPreferences('email', email);
-    await setSharedPreferences('phone', phone);
+    await setSharedPreferences('phone', phone.toString());
     await setSharedPreferences('image', image);
   }).catchError((onError) {
     print(onError);

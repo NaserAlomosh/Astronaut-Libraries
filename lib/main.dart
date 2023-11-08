@@ -1,4 +1,7 @@
+import 'package:astronaut_libraries/classes/encrypt/encrypt.dart';
+import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +20,9 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
+  await setSharedPreferences('name', 'Naser Alomosh');
+  var name = await getSharedPreferences('name');
+  print(name);
   runApp(const MyApp());
 }
 

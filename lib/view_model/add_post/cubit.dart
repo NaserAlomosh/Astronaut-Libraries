@@ -9,7 +9,6 @@ import 'states.dart';
 class AddPostCubit extends Cubit<AddPostState> {
   AddPostCubit() : super(AddPostInitial());
   File? image;
-
   addPostCubit({
     String? description,
     String? gitHubUrl,

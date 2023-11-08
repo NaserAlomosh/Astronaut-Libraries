@@ -1,22 +1,18 @@
+import 'package:astronaut_libraries/classes/encrypt/encrypt.dart';
 import 'package:astronaut_libraries/main.dart';
 
 setSharedPreferences(String key, dynamic value) async {
-  bool? saveData;
-  if (value is String) {
-    saveData = await prefs!.setString(key, value);
-  } else if (value is int) {
-    saveData = await prefs!.setInt(key, value);
-  } else if (value is double) {
-    saveData = await prefs!.setDouble(key, value);
-  } else if (value is bool) {
-    saveData = await prefs!.setBool(key, value);
-  }
-  print('Set Shared Preferences is : $saveData {$key : $value}');
+  String text = EncryptData().encrypt(value);
+  print('Encrypt $key = $text');
+  bool? saveData = await prefs!.setString(key, text);
+  print('Set Data In SharedPreferences IS : $saveData');
 }
 
-dynamic getSharedPreferences(String key) {
-  dynamic data = prefs!.get(key);
-  return data;
+String getSharedPreferences(String key) {
+  String? data = prefs!.getString(key);
+  String text = EncryptData().decrypt(data!);
+  print('Decrypt $key = $text');
+  return text;
 }
 
 Future<void> clearSharedPreferences() async {

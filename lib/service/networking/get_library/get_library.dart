@@ -7,12 +7,14 @@ Future<List<LibraryModel>> getLibrary(
   String collection,
 ) async {
   List<LibraryModel> data = [];
-  await FirebaseFirestore.instance.collection(collection).get().then((value) {
-    for (var element in value.docs) {
-      data.add(LibraryModel.fromJosn(element.data()));
-    }
-  }).catchError((onError) {
-    log('Burgers DONT GET DATA');
-  });
+  try {
+    await FirebaseFirestore.instance.collection(collection).get().then((value) {
+      for (var element in value.docs) {
+        data.add(LibraryModel.fromJosn(element.data()));
+      }
+    });
+  } catch (e) {
+    print('Get Library Error = $e');
+  }
   return data;
 }

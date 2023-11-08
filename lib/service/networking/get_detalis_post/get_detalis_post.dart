@@ -6,16 +6,20 @@ Future<PostDetailsModel?> getDetalisPost({
   required String postId,
 }) async {
   PostDetailsModel? postDetailsModel;
-  await FirebaseFirestore.instance
-      .collection('users')
-      .doc(userId)
-      .collection('posts')
-      .doc(postId)
-      .get()
-      .then(
-    (value) {
-      postDetailsModel = PostDetailsModel.fromJosn(value.data()!);
-    },
-  );
+  try {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('posts')
+        .doc(postId)
+        .get()
+        .then(
+      (value) {
+        postDetailsModel = PostDetailsModel.fromJosn(value.data()!);
+      },
+    );
+  } catch (e) {
+    print('Get Post Details Error : $e ');
+  }
   return postDetailsModel;
 }

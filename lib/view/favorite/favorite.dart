@@ -57,11 +57,11 @@ class FavoriteView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          LikeIcon(
-                            userLike: true,
-                            removeLike: () {},
-                            addLike: () {},
-                          ),
+                          // LikeIcon(
+                          //   userLike: true,
+                          //   removeLike: () async {},
+                          //   addLike: () async {},
+                          // ),
                         ],
                       ),
                       SizedBox(height: 10.h),

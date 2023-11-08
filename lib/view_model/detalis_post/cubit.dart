@@ -10,7 +10,7 @@ class DetalisPostCubit extends Cubit<DetalisPostState> {
   DetalisPostCubit() : super(DetalisPostInitial());
   PostDetailsModel? postDetailsModel;
   bool userIsLiked = false;
-  Future<void> getDetalisPostCubit({
+  void getDetalisPostCubit({
     required String userId,
     required String postId,
   }) async {
@@ -22,7 +22,7 @@ class DetalisPostCubit extends Cubit<DetalisPostState> {
     required String userId,
     required String postId,
   }) async {
-    String id = await getSharedPreferences('id');
+    String id = getSharedPreferences('id');
     PostDetailsModel? postDetailsModel =
         await getDetalisPost(userId: userId, postId: postId);
     for (var element in postDetailsModel!.likes) {
@@ -33,11 +33,11 @@ class DetalisPostCubit extends Cubit<DetalisPostState> {
     emit(DetalisPostSuccess());
   }
 
-  likeAction(String postId, String userPostId) async {
-    if (userIsLiked == false) {
-      await sendLikePost(postId, userPostId);
-    } else {
-      await removeLikePost(postId, userPostId);
-    }
+  sendLikeCubit(String? postId, String? postUserId) async {
+    await sendLikePost(postId, postUserId);
+  }
+
+  removeLikeCubit(String? postId, String? postUserId) async {
+    await removeLikePost(postId, postUserId);
   }
 }

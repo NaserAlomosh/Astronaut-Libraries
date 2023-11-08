@@ -146,10 +146,12 @@ class PostDetailsView extends StatelessWidget {
                                   userLike: context
                                       .read<DetalisPostCubit>()
                                       .userIsLiked,
-                                  removeLike: () async =>
-                                      await removeLikePost(postId, postUserId),
-                                  addLike: () async =>
-                                      await sendLikePost(postId, postUserId),
+                                  removeLike: () async => await context
+                                      .read<DetalisPostCubit>()
+                                      .removeLikeCubit(postId, postUserId),
+                                  addLike: () async => context
+                                      .read<DetalisPostCubit>()
+                                      .sendLikeCubit(postId, postUserId),
                                 ),
                               ),
                             ],
