@@ -1,7 +1,4 @@
-import 'package:astronaut_libraries/classes/encrypt/encrypt.dart';
-import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
-import 'package:encrypt/encrypt.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,19 +7,43 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'style/color_app.dart';
 
-SharedPreferences? prefs;
+class Player {
+  String name;
+  int score;
 
+  Player(this.name, this.score);
+}
+
+SharedPreferences? prefs;
 void main() async {
+  List<Player> players = [
+    Player('Alice', 100),
+    Player('Bob', 85),
+    Player('Charlie', 95),
+    // Add more players as needed
+  ];
+  players.sort((a, b) => b.score.compareTo(a.score));
+
+  // Display the ranking
+  print('Rank\tName\tScore');
+  for (int i = 0; i < players.length; i++) {
+    print('${i + 1}\t${players[i].name}\t${players[i].score}');
+  }
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCwMMhHPhTF_RdP8wu2la9oWMn_e1mPDik",
+      appId: "1:16818078429:android:d602607f52a73813305134",
+      messagingSenderId: "16818078429",
+      projectId: "astronaut-libraries",
+    ),
+  );
   await ScreenUtil.ensureScreenSize();
   prefs = await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  await setSharedPreferences('name', 'Naser Alomosh');
-  var name = await getSharedPreferences('name');
-  print(name);
+
   runApp(const MyApp());
 }
 

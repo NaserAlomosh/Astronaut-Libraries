@@ -28,11 +28,11 @@ class AddTextFiald extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width > 800 ? 100.w : 20.w),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.w),
         child: Container(
-          height: maxLines == 1 ? 50.h : 100.h,
           color: Colors.white10,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -45,8 +45,11 @@ class AddTextFiald extends StatelessWidget {
                       maxLines: maxLines,
                       keyboardType: textInputType,
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          fontSize: 14.sp),
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: MediaQuery.of(context).size.width > 800
+                            ? 8.sp
+                            : 12.sp,
+                      ),
                       decoration: InputDecoration(
                         suffixIcon: cheak == true
                             ? controller.text == ""
@@ -63,7 +66,9 @@ class AddTextFiald extends StatelessWidget {
                             : null,
                         hintText: hintText,
                         hintStyle: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: MediaQuery.of(context).size.width > 800
+                              ? 10.sp
+                              : 14.sp,
                           color: Colors.white.withOpacity(0.6),
                         ),
                         border: InputBorder.none,
@@ -95,7 +100,9 @@ class AddTextFiald extends StatelessWidget {
                           : null,
                       hintText: hintText,
                       hintStyle: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: MediaQuery.of(context).size.width > 800
+                            ? 10.sp
+                            : 14.sp,
                         color: Colors.white.withOpacity(0.6),
                       ),
                       border: InputBorder.none,

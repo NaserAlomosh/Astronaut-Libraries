@@ -59,18 +59,31 @@ class _SignInViewState extends State<SignInView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment:
+                                MediaQuery.of(context).size.width > 800
+                                    ? CrossAxisAlignment.center
+                                    : CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 50.h),
-                              const CustomText(
+                              CustomText(
                                 text: 'Welcome Back',
-                                fontsize: 50,
+                                fontsize:
+                                    MediaQuery.of(context).size.width > 800
+                                        ? 20
+                                        : 50,
                               ),
-                              const CustomText(
+                              CustomText(
                                 text: 'Sign In',
-                                fontsize: 50,
+                                fontsize:
+                                    MediaQuery.of(context).size.width > 800
+                                        ? 20
+                                        : 50,
                               ),
-                              SizedBox(height: 80.h),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.width > 800
+                                          ? 20.h
+                                          : 40),
                               AddTextFiald(
                                   textInputType: TextInputType.emailAddress,
                                   controller: emailController,
@@ -96,24 +109,30 @@ class _SignInViewState extends State<SignInView> {
                                 },
                               ),
                               SizedBox(height: 20.h),
-                              const Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
                                     textfield: true,
                                     text: '- or -',
-                                    fontsize: 12,
+                                    fontsize:
+                                        MediaQuery.of(context).size.width > 800
+                                            ? 8
+                                            : 12,
                                   ),
                                 ],
                               ),
                               SizedBox(height: 5.h),
-                              const Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
                                     textfield: true,
                                     text: 'sign in with',
-                                    fontsize: 12,
+                                    fontsize:
+                                        MediaQuery.of(context).size.width > 800
+                                            ? 8
+                                            : 12,
                                   ),
                                 ],
                               ),
@@ -137,10 +156,14 @@ class _SignInViewState extends State<SignInView> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const CustomText(
+                                    CustomText(
                                       textfield: true,
                                       text: 'You don\'t have account?',
-                                      fontsize: 12,
+                                      fontsize:
+                                          MediaQuery.of(context).size.width >
+                                                  800
+                                              ? 8
+                                              : 12,
                                     ),
                                     SizedBox(width: 5.w),
                                     InkWell(
@@ -148,11 +171,15 @@ class _SignInViewState extends State<SignInView> {
                                         AppNavigation().pushFade(
                                             context, const SignUpView());
                                       },
-                                      child: const CustomText(
+                                      child: CustomText(
                                         textfield: true,
                                         text: 'Sign Up',
                                         color: Colors.blueAccent,
-                                        fontsize: 12,
+                                        fontsize:
+                                            MediaQuery.of(context).size.width >
+                                                    800
+                                                ? 8
+                                                : 12,
                                       ),
                                     ),
                                   ],

@@ -6,21 +6,17 @@ Future<List<PostModel>> getPost({
 }) async {
   List<PostModel>? postModel = [];
 
-  try {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .collection('posts')
-        .orderBy('shareTime', descending: true)
-        .get()
-        .then((value) {
-      for (var element in value.docs) {
-        postModel.add(PostModel.fromJosn(element.data()));
-      }
-    });
-  } catch (e) {
-    print('Get Posts Error : $e');
-  }
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(userId)
+      .collection('posts')
+      .orderBy('shareTime', descending: true)
+      .get()
+      .then((value) {
+    for (var element in value.docs) {
+      postModel.add(PostModel.fromJosn(element.data()));
+    }
+  });
 
   return postModel;
 }

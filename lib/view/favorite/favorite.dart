@@ -1,8 +1,9 @@
 import 'package:astronaut_libraries/widget/custom_text.dart';
-import 'package:astronaut_libraries/widget/like_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../widget/like_icon.dart';
 
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
@@ -57,11 +58,11 @@ class FavoriteView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          // LikeIcon(
-                          //   userLike: true,
-                          //   removeLike: () async {},
-                          //   addLike: () async {},
-                          // ),
+                          LikeIcon(
+                            userLike: true,
+                            removeLike: () async {},
+                            addLike: () async {},
+                          ),
                         ],
                       ),
                       SizedBox(height: 10.h),

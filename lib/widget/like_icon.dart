@@ -50,7 +50,7 @@ class LikeIcon extends StatelessWidget {
         Widget result;
 
         result = Padding(
-          padding: EdgeInsets.only(left: 8, top: 8.h),
+          padding: EdgeInsets.only(left: 8.w, top: 8.h),
           child: Text(
             text,
             style: TextStyle(color: color, fontSize: 20.sp),

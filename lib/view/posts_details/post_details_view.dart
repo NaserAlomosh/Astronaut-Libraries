@@ -13,7 +13,6 @@ import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../classes/navigation/app_navigation.dart';
-import '../../service/networking/like_post/like_post.dart';
 import '../search_user/search_user.dart';
 
 class PostDetailsView extends StatelessWidget {
@@ -124,7 +123,7 @@ class PostDetailsView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 4.h),
                       // like cubit
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,27 +131,21 @@ class PostDetailsView extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w,
-                                  vertical: 5.h,
-                                ),
-                                child: LikeIcon(
-                                  likes: context
-                                      .read<DetalisPostCubit>()
-                                      .postDetailsModel!
-                                      .likes
-                                      .length,
-                                  userLike: context
-                                      .read<DetalisPostCubit>()
-                                      .userIsLiked,
-                                  removeLike: () async => await context
-                                      .read<DetalisPostCubit>()
-                                      .removeLikeCubit(postId, postUserId),
-                                  addLike: () async => context
-                                      .read<DetalisPostCubit>()
-                                      .sendLikeCubit(postId, postUserId),
-                                ),
+                              LikeIcon(
+                                likes: context
+                                    .read<DetalisPostCubit>()
+                                    .postDetailsModel!
+                                    .likes
+                                    .length,
+                                userLike: context
+                                    .read<DetalisPostCubit>()
+                                    .userIsLiked,
+                                removeLike: () async => await context
+                                    .read<DetalisPostCubit>()
+                                    .removeLikeCubit(postId, postUserId),
+                                addLike: () async => context
+                                    .read<DetalisPostCubit>()
+                                    .sendLikeCubit(postId, postUserId),
                               ),
                             ],
                           ),

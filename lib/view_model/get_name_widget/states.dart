@@ -1,7 +1,7 @@
-abstract class GetNameWidgetState {}
+abstract class DrawerState {}
 
-final class GetNameWidgetInitial extends GetNameWidgetState {}
+final class DrawerInitial extends DrawerState {}
 
-final class GetNameWidgetLoadingState extends GetNameWidgetState {}
+final class DrawerLoadingState extends DrawerState {}
 
-final class GetNameWidgetSucssesState extends GetNameWidgetState {}
+final class DrawerSucssesState extends DrawerState {}

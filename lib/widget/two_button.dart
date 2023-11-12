@@ -37,24 +37,39 @@ class CustomTwoButton extends StatelessWidget {
         InkWell(
           onTap: firstOnTap,
           borderRadius: BorderRadius.circular(20.w),
-          child: Container(
-            height: 45.h,
-            width: 150.w,
-            decoration: BoxDecoration(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
                 color: Colors.white10,
-                borderRadius: BorderRadius.circular(20.w)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    Icon(
-                      firstIcon,
-                      color: Colors.blueAccent,
-                      size: 20.w,
-                    ),
-                    CustomText(text: firstTitle, fontsize: 14)
-                  ],
+                borderRadius: BorderRadius.circular(20.w),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      MediaQuery.of(context).size.width > 800 ? 12.w : 20.w,
+                  vertical:
+                      MediaQuery.of(context).size.width > 800 ? 20.h : 15.h,
+                ),
+                child: Center(
+                  child: Row(
+                    children: [
+                      Icon(
+                        firstIcon,
+                        color: Colors.blueAccent,
+                        size: MediaQuery.of(context).size.width > 800
+                            ? 8.sp
+                            : 18.sp,
+                      ),
+                      SizedBox(width: 5.w),
+                      CustomText(
+                        textfield: true,
+                        text: firstTitle,
+                        fontsize:
+                            MediaQuery.of(context).size.width > 800 ? 10 : 14,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -64,24 +79,39 @@ class CustomTwoButton extends StatelessWidget {
         InkWell(
           onTap: lastOnTap,
           borderRadius: BorderRadius.circular(20.w),
-          child: Container(
-            height: 45.h,
-            width: 150.w,
-            decoration: BoxDecoration(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
                 color: Colors.white10,
-                borderRadius: BorderRadius.circular(20.w)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    Icon(
-                      lastIcon,
-                      color: lastColor,
-                      size: 20.w,
-                    ),
-                    CustomText(text: lastTitle, fontsize: 14)
-                  ],
+                borderRadius: BorderRadius.circular(20.w),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      MediaQuery.of(context).size.width > 800 ? 12.w : 20.w,
+                  vertical:
+                      MediaQuery.of(context).size.width > 800 ? 20.h : 15.h,
+                ),
+                child: Center(
+                  child: Row(
+                    children: [
+                      Icon(
+                        lastIcon,
+                        color: Colors.white,
+                        size: MediaQuery.of(context).size.width > 800
+                            ? 8.sp
+                            : 18.sp,
+                      ),
+                      SizedBox(width: 5.w),
+                      CustomText(
+                        textfield: true,
+                        text: lastTitle,
+                        fontsize:
+                            MediaQuery.of(context).size.width > 800 ? 10 : 14,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

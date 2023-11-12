@@ -9,7 +9,7 @@ class GetPostsProfileCubit extends Cubit<GetPostsProfileState> {
   GetPostsProfileCubit() : super(GetPostsProfileInitial());
   List<PostModel> postProfile = [];
   getPostsProfileCubit(String? userId) async {
-    var id = await getSharedPreferences('id');
+    var id = getSharedPreferences('id');
     try {
       emit(GetPostsProfileLoading());
       postProfile = await getPost(userId: userId ?? id);

@@ -81,7 +81,10 @@ class ProfileView extends StatelessWidget {
 }
 
 Widget builderPostsWidget(
-    BuildContext context, String? profileImage, String? userId) {
+  BuildContext context,
+  String? profileImage,
+  String? userId,
+) {
   return BlocProvider(
     create: (context) => GetPostsProfileCubit()..getPostsProfileCubit(userId),
     child: BlocConsumer<GetPostsProfileCubit, GetPostsProfileState>(

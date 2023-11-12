@@ -9,8 +9,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   String name = '';
   getProfileData() async {
     emit(ProfileLoadingState());
-    image = await getSharedPreferences('image');
-    name = await getSharedPreferences('name');
+    image = getSharedPreferences('image');
+    name = getSharedPreferences('name');
     emit(ProfileSuccsesState());
   }
 }

@@ -15,7 +15,8 @@ String getSharedPreferences(String key) {
   return text;
 }
 
-Future<void> clearSharedPreferences() async {
+Future<bool> clearSharedPreferences() async {
   bool clean = await prefs!.clear();
   print('Clear Shared Preferences : $clean');
+  return clean;
 }

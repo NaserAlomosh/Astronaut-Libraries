@@ -20,12 +20,15 @@ class CustomTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return link == false
         ? Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(
+              horizontal:
+                  MediaQuery.of(context).size.width > 800 ? 100.w : 20.w,
+            ),
             child: InkWell(
               onTap: onPressed,
               borderRadius: BorderRadius.circular(10.w),
               child: Container(
-                height: 45.h,
+                height: MediaQuery.of(context).size.width > 800 ? 60.h : 50.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white10,
@@ -34,7 +37,7 @@ class CustomTextButton extends StatelessWidget {
                   child: CustomText(
                     textfield: true,
                     text: label,
-                    fontsize: 16,
+                    fontsize: MediaQuery.of(context).size.width > 800 ? 10 : 14,
                   ),
                 ),
               ),

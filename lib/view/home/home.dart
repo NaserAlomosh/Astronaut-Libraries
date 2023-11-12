@@ -1,8 +1,11 @@
 import 'package:astronaut_libraries/view/direct/direct.dart';
 import 'package:astronaut_libraries/view/profile/profile.dart';
 import 'package:astronaut_libraries/view/search_user/search_user.dart';
+import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
+import 'package:astronaut_libraries/widget/custom_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => GetNameWidgetCubit()..getName(),
+          create: (context) => DrawerCubit()..getWidgetNameCubit(),
         ),
         BlocProvider(
           create: (context) => HomeCubit(selectedIndex: widget.indexPage),
@@ -70,10 +73,10 @@ class _HomeViewState extends State<HomeView> {
                             )
                           : null,
                   backgroundColor: Colors.black.withOpacity(0.8),
-                  drawer: BlocConsumer<GetNameWidgetCubit, GetNameWidgetState>(
+                  drawer: BlocConsumer<DrawerCubit, DrawerState>(
                     listener: (context, state) {},
                     builder: (context, state) {
-                      if (state is GetNameWidgetLoadingState) {
+                      if (state is DrawerLoadingState) {
                         return Center(
                           child: Lottie.asset('assets/loading.json'),
                         );
@@ -82,73 +85,99 @@ class _HomeViewState extends State<HomeView> {
                           width: 180.w,
                           backgroundColor: Colors.black.withOpacity(0.4),
                           shadowColor: Colors.black.withOpacity(0.4),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Lottie.asset(
-                                  'assets/header_logo.json',
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ),
-                                ListTile(
-                                  trailing: InkWell(
-                                    onTap: () {
-                                      AppNavigation().push(
-                                        context,
-                                        const AddNameWidgetView(),
-                                      );
-                                    },
-                                    child: const Icon(
-                                      Icons.add,
-                                      color: Colors.white,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Lottie.asset(
+                                    'assets/home.json',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                  ListTile(
+                                    trailing: InkWell(
+                                      onTap: () {
+                                        AppNavigation().push(
+                                          context,
+                                          const AddNameWidgetView(),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 500,
-                                  child: ListView.builder(
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        onTap: () {
-                                          AppNavigation().push(
-                                            context,
-                                            LibrarysView(
-                                              widgetName: context
-                                                  .read<GetNameWidgetCubit>()
-                                                  .nameWidgets[index]
-                                                  .type
-                                                  .toString(),
-                                              added: false,
-                                            ),
-                                          );
-                                        },
-                                        trailing: const CustomIcons(
-                                          icon: Icons
-                                              .keyboard_arrow_right_rounded,
-                                          size: 20,
-                                        ),
-                                        title: Text(
-                                          context
-                                              .read<GetNameWidgetCubit>()
-                                              .nameWidgets[index]
-                                              .type
-                                              .toString(),
-                                          style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.8),
-                                            fontSize: 14.sp,
+                                  SizedBox(
+                                    height: 500,
+                                    child: ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          onTap: () {
+                                            AppNavigation().push(
+                                              context,
+                                              LibrarysView(
+                                                widgetName: context
+                                                    .read<DrawerCubit>()
+                                                    .nameWidgets[index]
+                                                    .type
+                                                    .toString(),
+                                                added: false,
+                                              ),
+                                            );
+                                          },
+                                          trailing: const CustomIcons(
+                                            icon: Icons
+                                                .keyboard_arrow_right_rounded,
+                                            size: 22,
                                           ),
-                                        ),
+                                          title: CustomText(
+                                            textfield: true,
+                                            text: context
+                                                .read<DrawerCubit>()
+                                                .nameWidgets[index]
+                                                .type
+                                                .toString(),
+                                            fontsize: 16,
+                                          ),
+                                        );
+                                      },
+                                      itemCount: context
+                                          .read<DrawerCubit>()
+                                          .nameWidgets
+                                          .length,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              ListTile(
+                                onTap: () async {
+                                  var state = context.read<DrawerCubit>();
+                                  state.signOutCubit().then(
+                                    (_) {
+                                      AppNavigation()
+                                          .pushReplacmentRightToLeftWithFade(
+                                        context,
+                                        const SignInView(),
                                       );
                                     },
-                                    itemCount: context
-                                        .read<GetNameWidgetCubit>()
-                                        .nameWidgets
-                                        .length,
-                                  ),
+                                  );
+                                },
+                                title: const CustomText(
+                                  color: Colors.red,
+                                  textfield: true,
+                                  text: 'Sign out',
+                                  fontsize: 16,
                                 ),
-                              ],
-                            ),
+                                trailing: const CustomIcons(
+                                  icon: Icons.logout,
+                                  size: 20,
+                                  color: Colors.red,
+                                ),
+                                splashColor: Colors.redAccent.withOpacity(0.4),
+                              ),
+                            ],
                           ),
                         );
                       }
@@ -248,7 +277,7 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-Widget builderHomeWidget(BuildContext context) {
+Widget builderWidget(BuildContext context) {
   return SingleChildScrollView(
     child: Column(
       children: [
@@ -300,3 +329,6 @@ Widget builderHomeWidget(BuildContext context) {
     ),
   );
 }
+
+
+//

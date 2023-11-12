@@ -8,7 +8,8 @@ Future<void> signUp({
   required int phone,
   required String email,
   required String password,
-  String image = "",
+  String image =
+      "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
 }) async {
   //
   await FirebaseAuth.instance
@@ -16,7 +17,7 @@ Future<void> signUp({
       .then((value) async {
     value.credential;
     String uid = FirebaseAuth.instance.currentUser!.uid.toString();
-    FirebaseFirestore.instance.collection("users").doc(uid).set({
+    await FirebaseFirestore.instance.collection("users").doc(uid).set({
       "uid": uid,
       "email": email,
       "name": '$firstName $lastName',

@@ -48,7 +48,7 @@ Future<void> removeLikePost(
     Map<String, dynamic>? postData = value.data();
     List<dynamic> likes = postData!['likes'];
     for (var i = 0; i < likes.length; i++) {
-      if (likes[i]['id'] == await getSharedPreferences('id')) {
+      if (likes[i]['id'] == getSharedPreferences('id')) {
         print(true);
         likes.removeAt(i);
         await postsData.update({
