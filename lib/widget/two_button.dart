@@ -79,39 +79,35 @@ class CustomTwoButton extends StatelessWidget {
         InkWell(
           onTap: lastOnTap,
           borderRadius: BorderRadius.circular(20.w),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white10,
-                borderRadius: BorderRadius.circular(20.w),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white10,
+              borderRadius: BorderRadius.circular(20.w),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal:
+                    MediaQuery.of(context).size.width > 800 ? 12.w : 20.w,
+                vertical: MediaQuery.of(context).size.width > 800 ? 20.h : 15.h,
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal:
-                      MediaQuery.of(context).size.width > 800 ? 12.w : 20.w,
-                  vertical:
-                      MediaQuery.of(context).size.width > 800 ? 20.h : 15.h,
-                ),
-                child: Center(
-                  child: Row(
-                    children: [
-                      Icon(
-                        lastIcon,
-                        color: Colors.white,
-                        size: MediaQuery.of(context).size.width > 800
-                            ? 8.sp
-                            : 18.sp,
-                      ),
-                      SizedBox(width: 5.w),
-                      CustomText(
-                        textfield: true,
-                        text: lastTitle,
-                        fontsize:
-                            MediaQuery.of(context).size.width > 800 ? 10 : 14,
-                      )
-                    ],
-                  ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Icon(
+                      lastIcon,
+                      color: Colors.white,
+                      size: MediaQuery.of(context).size.width > 800
+                          ? 8.sp
+                          : 18.sp,
+                    ),
+                    SizedBox(width: 5.w),
+                    CustomText(
+                      textfield: true,
+                      text: lastTitle,
+                      fontsize:
+                          MediaQuery.of(context).size.width > 800 ? 10 : 14,
+                    )
+                  ],
                 ),
               ),
             ),

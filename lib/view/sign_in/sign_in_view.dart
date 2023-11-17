@@ -56,33 +56,34 @@ class _SignInViewState extends State<SignInView> {
                   } else {
                     return SingleChildScrollView(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            crossAxisAlignment:
-                                MediaQuery.of(context).size.width > 800
-                                    ? CrossAxisAlignment.center
-                                    : CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 50.h),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width > 800
+                                    ? 70.h
+                                    : 50,
+                              ),
                               CustomText(
+                                textfield: true,
                                 text: 'Welcome Back',
                                 fontsize:
                                     MediaQuery.of(context).size.width > 800
-                                        ? 20
+                                        ? 34
                                         : 50,
                               ),
                               CustomText(
+                                textfield: true,
                                 text: 'Sign In',
                                 fontsize:
                                     MediaQuery.of(context).size.width > 800
-                                        ? 20
+                                        ? 34
                                         : 50,
                               ),
                               SizedBox(
                                   height:
                                       MediaQuery.of(context).size.width > 800
-                                          ? 20.h
+                                          ? 50.h
                                           : 40),
                               AddTextFiald(
                                   textInputType: TextInputType.emailAddress,
@@ -117,7 +118,7 @@ class _SignInViewState extends State<SignInView> {
                                     text: '- or -',
                                     fontsize:
                                         MediaQuery.of(context).size.width > 800
-                                            ? 8
+                                            ? 10
                                             : 12,
                                   ),
                                 ],
@@ -131,7 +132,7 @@ class _SignInViewState extends State<SignInView> {
                                     text: 'sign in with',
                                     fontsize:
                                         MediaQuery.of(context).size.width > 800
-                                            ? 8
+                                            ? 10
                                             : 12,
                                   ),
                                 ],

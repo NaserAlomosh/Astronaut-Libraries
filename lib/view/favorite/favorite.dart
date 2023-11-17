@@ -26,6 +26,7 @@ class FavoriteView extends StatelessWidget {
             ),
           ),
           ListView.builder(
+            key: const PageStorageKey<String>('Post'),
             itemCount: 3,
             itemBuilder: (context, index) {
               return Padding(

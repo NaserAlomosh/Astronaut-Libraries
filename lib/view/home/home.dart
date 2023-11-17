@@ -1,9 +1,11 @@
+import 'package:astronaut_libraries/service/networking/sign_out/sign_out.dart';
 import 'package:astronaut_libraries/view/direct/direct.dart';
 import 'package:astronaut_libraries/view/profile/profile.dart';
 import 'package:astronaut_libraries/view/search_user/search_user.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
+import 'package:astronaut_libraries/view_model/sign_out/sign_out_cubit.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 
 import 'package:flutter/material.dart';
@@ -43,6 +45,9 @@ class _HomeViewState extends State<HomeView> {
         ),
         BlocProvider(
           create: (context) => HomeCubit(selectedIndex: widget.indexPage),
+        ),
+        BlocProvider(
+          create: (context) => SignOutCubit(),
         ),
       ],
       child: SafeArea(
@@ -110,7 +115,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 500,
+                                    height: 520.h,
                                     child: ListView.builder(
                                       itemBuilder: (context, index) {
                                         return ListTile(
@@ -153,9 +158,11 @@ class _HomeViewState extends State<HomeView> {
                               ),
                               ListTile(
                                 onTap: () async {
-                                  var state = context.read<DrawerCubit>();
-                                  state.signOutCubit().then(
-                                    (_) {
+                                  context
+                                      .read<SignOutCubit>()
+                                      .signOutCubit()
+                                      .then(
+                                    (state) {
                                       AppNavigation()
                                           .pushReplacmentRightToLeftWithFade(
                                         context,

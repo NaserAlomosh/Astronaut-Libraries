@@ -4,11 +4,6 @@ import 'package:intl/intl.dart';
 String postsTime(String shareTime) {
   DateTime dateTime = DateTime.parse(shareTime);
   PostTime postTime = calculatePublishingTime(dateTime);
-  print('years ${postTime.years}');
-  print('days ${postTime.days}');
-  print('hours ${postTime.hours}');
-  print('minutes ${postTime.minutes}');
-  print('seconds ${postTime.seconds}');
   if (postTime.years == 0) {
     if (postTime.months == 0) {
       if (postTime.days == 0) {

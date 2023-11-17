@@ -16,28 +16,16 @@ class Player {
 
 SharedPreferences? prefs;
 void main() async {
-  List<Player> players = [
-    Player('Alice', 100),
-    Player('Bob', 85),
-    Player('Charlie', 95),
-    // Add more players as needed
-  ];
-  players.sort((a, b) => b.score.compareTo(a.score));
-
-  // Display the ranking
-  print('Rank\tName\tScore');
-  for (int i = 0; i < players.length; i++) {
-    print('${i + 1}\t${players[i].name}\t${players[i].score}');
-  }
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyCwMMhHPhTF_RdP8wu2la9oWMn_e1mPDik",
-      appId: "1:16818078429:android:d602607f52a73813305134",
-      messagingSenderId: "16818078429",
-      projectId: "astronaut-libraries",
-    ),
-  );
+      //name: 'astronaut libraries',
+      // options: const FirebaseOptions(
+      //   apiKey: "AIzaSyCwMMhHPhTF_RdP8wu2la9oWMn_e1mPDik",
+      //   appId: "1:16818078429:android:d602607f52a73813305134",
+      //   messagingSenderId: "16818078429",
+      //   projectId: "Astronaut-libraries",
+      // ),
+      );
   await ScreenUtil.ensureScreenSize();
   prefs = await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

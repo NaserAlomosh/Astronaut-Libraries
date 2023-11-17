@@ -1,5 +1,3 @@
-import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/view/consignee_information/consignee_information.dart';
 import 'package:astronaut_libraries/view_model/search_user/cubit.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:astronaut_libraries/widget/text_fiald_add_new.dart';
@@ -8,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../classes/navigation/app_navigation.dart';
 import '../../view_model/search_user/states.dart';
+import '../consignee_information/consignee_information.dart';
 import '../profile_user/profie_user.dart';
 
 class SearchUser extends StatefulWidget {

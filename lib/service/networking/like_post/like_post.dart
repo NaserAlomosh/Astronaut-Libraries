@@ -61,6 +61,19 @@ Future<void> removeLikePost(
           'shareTime': postData['shareTime'],
           'userId': postData['userId'],
         });
+        await FirebaseFirestore.instance
+            .collection('posts')
+            .doc(postId)
+            .update({
+          'likes': likes,
+          'image': postData['image'],
+          'description': postData['description'],
+          'gitHubUrl': postData['gitHubUrl'],
+          'postId': postData['postId'],
+          'pubDevUrl': postData['pubDevUrl'],
+          'shareTime': postData['shareTime'],
+          'userId': postData['userId'],
+        });
       }
     }
   } catch (e) {

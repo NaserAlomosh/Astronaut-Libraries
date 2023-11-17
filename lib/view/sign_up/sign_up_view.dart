@@ -3,6 +3,7 @@ import 'package:astronaut_libraries/view_model/sign_up/cubit.dart';
 import 'package:astronaut_libraries/view_model/sign_up/states.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:astronaut_libraries/widget/custom_text_buttom.dart';
+import 'package:astronaut_libraries/widget/first_last_textfild.dart';
 import 'package:astronaut_libraries/widget/text_fiald_add_new.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,42 +60,28 @@ class _SignUpViewState extends State<SignUpView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(height: 50.h),
-                              const CustomText(
+                              CustomText(
                                 text: 'Welcome Back',
-                                fontsize: 50,
+                                fontsize:
+                                    MediaQuery.of(context).size.width > 800
+                                        ? 34
+                                        : 50,
                               ),
-                              const CustomText(
+                              CustomText(
                                 text: 'Sign Up',
-                                fontsize: 50,
+                                fontsize:
+                                    MediaQuery.of(context).size.width > 800
+                                        ? 34
+                                        : 50,
                               ),
                               SizedBox(height: 80.h),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: 205.5.w,
-                                    child: AddTextFiald(
-                                      textInputType: TextInputType.phone,
-                                      controller: firstNameController,
-                                      hintText: 'first name',
-                                      onChanged: (_) {},
-                                      sucsses: false,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 205.5.w,
-                                    child: AddTextFiald(
-                                      textInputType: TextInputType.phone,
-                                      controller: lastNameController,
-                                      hintText: 'last name',
-                                      onChanged: (_) {},
-                                      sucsses: false,
-                                    ),
-                                  ),
-                                ],
+                              FirstLastTextFiald(
+                                firstController: firstNameController,
+                                lastController: lastNameController,
                               ),
                               SizedBox(height: 20.h),
                               AddTextFiald(

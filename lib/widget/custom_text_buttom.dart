@@ -24,11 +24,10 @@ class CustomTextButton extends StatelessWidget {
               horizontal:
                   MediaQuery.of(context).size.width > 800 ? 100.w : 20.w,
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: onPressed,
-              borderRadius: BorderRadius.circular(10.w),
               child: Container(
-                height: MediaQuery.of(context).size.width > 800 ? 60.h : 50.h,
+                height: MediaQuery.of(context).size.width > 800 ? 40.h : 50.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white10,

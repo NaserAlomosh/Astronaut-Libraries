@@ -1,6 +1,6 @@
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
 import 'package:astronaut_libraries/classes/calculatePublishingTime/calculate_publishing_time.dart';
-import 'package:astronaut_libraries/view/posts_details/post_details_view.dart';
+import 'package:astronaut_libraries/view/post_details/post_details_view.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/cubit.dart';
 import 'package:astronaut_libraries/view_model/get_posts_profile/states.dart';
 import 'package:astronaut_libraries/view_model/profile/cubit.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../view_model/get_posts_profile/cubit.dart';
 import '../../view_model/profile/states.dart';
 
 class ProfileView extends StatelessWidget {
@@ -45,29 +46,24 @@ class ProfileView extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ContainedTabBarView(
-                    tabs: const [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                              text: 'Posts', fontsize: 12, textfield: true),
-                          CustomText(
-                              text: '1078', fontsize: 12, textfield: true),
-                        ],
-                      ),
-                    ],
-                    views: [
-                      builderPostsWidget(context,
-                          context.read<ProfileCubit>().image.toString(), null),
-                    ],
-                    tabBarProperties: TabBarProperties(
-                      height: 50.h,
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.w),
-                      ),
+                child: ContainedTabBarView(
+                  tabs: const [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomText(
+                            text: 'Posts', fontsize: 12, textfield: true),
+                      ],
+                    ),
+                  ],
+                  views: [
+                    builderPostsWidget(context,
+                        context.read<ProfileCubit>().image.toString(), null),
+                  ],
+                  tabBarProperties: TabBarProperties(
+                    height: 50.h,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.w),
                     ),
                   ),
                 ),
@@ -90,7 +86,7 @@ Widget builderPostsWidget(
     child: BlocConsumer<GetPostsProfileCubit, GetPostsProfileState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is GetPostsProfileLoading) {
+        if (postsProfile == null) {
           return Center(
             child: Lottie.asset('assets/loading.json'),
           );
@@ -103,7 +99,7 @@ Widget builderPostsWidget(
               mainAxisSpacing: 1,
               crossAxisCount: 3,
               children: List.generate(
-                context.read<GetPostsProfileCubit>().postProfile.length,
+                postsProfile!.length,
                 (index) => SizedBox(
                   child: Column(
                     children: [
@@ -113,31 +109,14 @@ Widget builderPostsWidget(
                             AppNavigation().pushZoom(
                               context,
                               PostDetailsView(
-                                name: context
-                                    .read<GetPostsProfileCubit>()
-                                    .postProfile[index]
-                                    .name
-                                    .toString(),
-                                postUserId: context
-                                    .read<GetPostsProfileCubit>()
-                                    .postProfile[index]
-                                    .userId
-                                    .toString(),
-                                postId: context
-                                    .read<GetPostsProfileCubit>()
-                                    .postProfile[index]
-                                    .postId
-                                    .toString(),
-                                datePost: postsTime(context
-                                    .read<GetPostsProfileCubit>()
-                                    .postProfile[index]
-                                    .shareTime
-                                    .toString()),
+                                name: postsProfile![index].name.toString(),
+                                postUserId:
+                                    postsProfile![index].userId.toString(),
+                                postId: postsProfile![index].postId.toString(),
+                                datePost: postsTime(
+                                    postsProfile![index].shareTime.toString()),
                                 profileImage: profileImage!,
-                                image: context
-                                    .read<GetPostsProfileCubit>()
-                                    .postProfile[index]
-                                    .image!,
+                                image: postsProfile![index].image!,
                               ),
                             );
                           },
@@ -145,10 +124,7 @@ Widget builderPostsWidget(
                             width: double.infinity,
                             color: Colors.white10,
                             child: Image.network(
-                              context
-                                  .read<GetPostsProfileCubit>()
-                                  .postProfile[index]
-                                  .image!,
+                              postsProfile![index].image!,
                               fit: BoxFit.cover,
                             ),
                           ),

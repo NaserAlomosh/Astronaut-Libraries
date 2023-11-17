@@ -35,7 +35,9 @@ class AddTextFiald extends StatelessWidget {
         child: Container(
           color: Colors.white10,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
+                vertical: MediaQuery.of(context).size.width > 800 ? 8.h : 0),
             child: maxLines == 1
                 ? Center(
                     child: TextField(

@@ -5,14 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'states.dart';
 
+List<PostModel>? postsProfile;
+
 class GetPostsProfileCubit extends Cubit<GetPostsProfileState> {
   GetPostsProfileCubit() : super(GetPostsProfileInitial());
-  List<PostModel> postProfile = [];
+
   getPostsProfileCubit(String? userId) async {
     var id = getSharedPreferences('id');
     try {
       emit(GetPostsProfileLoading());
-      postProfile = await getPost(userId: userId ?? id);
+      var a = await getPosts(userId: userId ?? id);
+      postsProfile = a;
       emit(GetPostsProfilSucsses());
     } catch (_) {
       emit(GetPostsProfileError());

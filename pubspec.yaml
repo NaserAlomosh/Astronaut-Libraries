@@ -77,6 +77,9 @@ dependencies:
   ## Encrypt Data
   encrypt: ^5.0.3
   ## Home view
+  ## Snackbar
+  animated_snack_bar: ^0.4.0
+
 
 
 

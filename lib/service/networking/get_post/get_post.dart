@@ -1,7 +1,7 @@
 import 'package:astronaut_libraries/model/post/post_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<List<PostModel>> getPost({
+Future<List<PostModel>> getPosts({
   String? userId,
 }) async {
   List<PostModel>? postModel = [];

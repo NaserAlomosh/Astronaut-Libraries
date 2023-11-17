@@ -1,4 +1,4 @@
-import 'package:astronaut_libraries/service/networking/send_message/send_message.dart';
+import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,15 +41,15 @@ class ConsigneeInformation extends StatelessWidget {
         backgroundColor: Colors.grey,
         child: const Icon(Icons.send),
         onPressed: () async {
-          await sendMessage(
-            description: description,
-            gitHubUrl: gitHubUrl,
-            image: image,
-            postId: postId,
-            pubDevUrl: pubDevUrl,
-            sendToId: id,
-            shareTime: datePost,
-          );
+          // await sendMessage(
+          //   description: description,
+          //   gitHubUrl: gitHubUrl,
+          //   image: image,
+          //   postId: postId,
+          //   pubDevUrl: pubDevUrl,
+          //   sendToId: id,
+          //   shareTime: datePost,
+          // );
         },
       ),
       appBar: AppBar(),

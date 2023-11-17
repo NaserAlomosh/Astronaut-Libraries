@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
+import 'package:astronaut_libraries/view_model/get_posts_profile/cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -36,6 +37,18 @@ Future<void> addPost({
         .collection('posts')
         .doc(postDoc)
         .set({
+      'userId': userId,
+      'postId': postDoc,
+      'description': description,
+      'image': url,
+      'gitHubUrl': gitHubUrl,
+      'pubDevUrl': pubDevUrl,
+      'shareTime': DateTime.now().toString(),
+      'likes': [],
+      'name': getSharedPreferences('name'),
+      'userImage': getSharedPreferences('image'),
+    });
+    await FirebaseFirestore.instance.collection('posts').doc(postDoc).set({
       'userId': userId,
       'postId': postDoc,
       'description': description,

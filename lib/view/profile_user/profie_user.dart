@@ -10,8 +10,12 @@ class ProfileUser extends StatelessWidget {
 
   final String id;
   final String name;
-  const ProfileUser(
-      {super.key, required this.image, required this.id, required this.name});
+  const ProfileUser({
+    super.key,
+    required this.image,
+    required this.id,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,6 @@ class ProfileUser extends StatelessWidget {
                       children: [
                         CustomText(
                             text: 'Posts', fontsize: 12, textfield: true),
-                        CustomText(text: '1078', fontsize: 12, textfield: true),
                       ],
                     ),
                   ],
