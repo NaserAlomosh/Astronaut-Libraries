@@ -10,9 +10,7 @@ Future<List<PostModel>> getPostsHome() async {
     var posts = FirebaseFirestore.instance.collection('posts');
     await posts.get().then((value) {
       postsLength = value.docs.length;
-      if (postsLength > refreshPosts) {
-        postsCount = refreshPosts;
-      } else {
+      if (postsCount > postsLength) {
         postsCount = postsLength;
       }
     });
@@ -32,5 +30,3 @@ Future<List<PostModel>> getPostsHome() async {
   }
   return postsModel;
 }
-
-showMore() {}
