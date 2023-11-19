@@ -13,7 +13,13 @@ class PostHomeCubit extends Cubit<PostHomeState> {
     List<PostModel> data = [];
     try {
       // ;
-
+      if (postsCount <= 4) {
+        showMore = true;
+        emit(PostHomeSucsses());
+      } else {
+        showMore = false;
+        emit(PostHomeSucsses());
+      }
       if (postsModel == null) {
         data = await getPostsHome();
         postsModel = data;
