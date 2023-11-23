@@ -10,21 +10,20 @@ class PostHomeCubit extends Cubit<PostHomeState> {
 
   bool? showMore;
   Future<void> getPostHomeCubit() async {
-    List<PostModel> data = [];
+    //  List<PostModel> data = [];
     try {
       // ;
       if (postsCount <= 4) {
         showMore = true;
-        emit(PostHomeSucsses());
       } else {
         showMore = false;
-        emit(PostHomeSucsses());
       }
       if (postsModel == null) {
-        data = await getPostsHome();
-        postsModel = data;
+        //data =
+        postsModel = await getPostsHome();
+
         postsModel!.sort((a, b) => b.shareTime!.compareTo(a.shareTime!));
-        emit(PostHomeSucsses());
+
         print('POSTS HOME CUBIT IN VIEW_MODEL FILE SUCSSES');
       }
     } catch (e) {
@@ -33,6 +32,11 @@ class PostHomeCubit extends Cubit<PostHomeState> {
   }
 
   showMorePosts() {
+    if (postsCount <= 4) {
+      showMore = true;
+    } else {
+      showMore = false;
+    }
     if (4 > postsLength) {
       showMore = false;
     } else {

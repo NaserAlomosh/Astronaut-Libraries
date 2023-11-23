@@ -1,3 +1,4 @@
+import 'package:astronaut_libraries/service/networking/chats/get_chats/get_chats.dart';
 import 'package:astronaut_libraries/service/networking/get_user_data/get_user_data.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,8 +11,8 @@ Future<String> signIn({
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      saveOnSheredPrefUserData(id: value.user!.uid);
+        .then((value) async {
+      await saveOnSheredPrefUserData(id: value.user!.uid);
     });
     return 'Sign In Sucsses';
   } on FirebaseAuthException catch (e) {

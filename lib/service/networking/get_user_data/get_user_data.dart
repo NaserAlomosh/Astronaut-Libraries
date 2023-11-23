@@ -9,7 +9,7 @@ Future<void> saveOnSheredPrefUserData({required String id}) async {
         .doc(id)
         .get()
         .then((value) {
-      var userModel = UserModel.fromJosn(value.data()!);
+      var userModel = UserModel.fromJson(value.data()!);
       setSharedPreferences('name', userModel.name.toString());
       setSharedPreferences('email', userModel.email.toString());
       setSharedPreferences('phone', userModel.phone.toString());

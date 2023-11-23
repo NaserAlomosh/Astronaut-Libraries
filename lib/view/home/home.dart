@@ -1,11 +1,10 @@
-import 'package:astronaut_libraries/service/networking/sign_out/sign_out.dart';
-import 'package:astronaut_libraries/view/direct/direct.dart';
+import 'package:astronaut_libraries/view/chats/chats_view.dart';
 import 'package:astronaut_libraries/view/profile/profile.dart';
 import 'package:astronaut_libraries/view/search_user/search_user.dart';
 import 'package:astronaut_libraries/view/sign_in/sign_in_view.dart';
 import 'package:astronaut_libraries/view_model/home/cubit.dart';
 import 'package:astronaut_libraries/view_model/home/states.dart';
-import 'package:astronaut_libraries/view_model/sign_out/sign_out_cubit.dart';
+import 'package:astronaut_libraries/view_model/sign_out/cubit.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 
 import 'package:flutter/material.dart';
@@ -206,7 +205,7 @@ class _HomeViewState extends State<HomeView> {
                         onTap: () {
                           AppNavigation().pushRightToLeftWithFade(
                             context,
-                            const Direct(),
+                            const ChatsView(),
                           );
                         },
                         child: CustomIcons(icon: Icons.chat, size: 20.sp),

@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../view_model/get_posts_profile/cubit.dart';
 import '../../view_model/profile/states.dart';
 
 class ProfileView extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:astronaut_libraries/classes/calculatePublishingTime/calculate_publishing_time.dart';
 import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
-import 'package:astronaut_libraries/model/post/post_model.dart';
 import 'package:astronaut_libraries/service/networking/get_posts_home/get_posts_home.dart';
 import 'package:astronaut_libraries/view/post_details/post_details_view.dart';
 import 'package:astronaut_libraries/view_model/posts_home/cubit.dart';
@@ -55,7 +54,7 @@ class _HomePostsViewState extends State<HomePostsView> {
                         const CustomText(text: 'No Posts', fontsize: 30),
                         IconButton(
                             onPressed: () {
-                              postsModel = null;
+                              // postsModel = null;
                               context.read<PostHomeCubit>().getPostHomeCubit();
                             },
                             icon: const Icon(

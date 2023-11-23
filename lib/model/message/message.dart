@@ -1,17 +1,18 @@
-class MessagesModel {
-  List<dynamic> messages = [];
-  MessagesModel.fromJosn(Map<String, dynamic> json) {
-    for (var element in json['messags']) {
-      messages.add(MessageModel.fromJosn(element));
-    }
-  }
-}
-
-class MessageModel {
-  String? id;
-  bool? text;
-  MessageModel.fromJosn(Map<String, dynamic> json) {
-    id = json["sender"];
+class MassegesModel {
+  String? date;
+  String? senderID;
+  String? receiverID;
+  String? text;
+  MassegesModel({
+    String? date,
+    String? senderID,
+    String? receiverID,
+    String? text,
+  });
+  MassegesModel.fromJosn(Map<String, dynamic>? json) {
+    date = json!["date"].toString();
+    senderID = json["senderID"];
+    receiverID = json["receiverID"];
     text = json["text"];
   }
 }

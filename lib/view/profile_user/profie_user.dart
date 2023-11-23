@@ -1,3 +1,5 @@
+import 'package:astronaut_libraries/classes/navigation/app_navigation.dart';
+import 'package:astronaut_libraries/view/messenges/messenges_view.dart';
 import 'package:astronaut_libraries/view/profile/profile.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +38,32 @@ class ProfileUser extends StatelessWidget {
             Text(
               name,
               style: TextStyle(fontSize: 18.sp),
+            ),
+            SizedBox(height: 10.h),
+            GestureDetector(
+              onTap: () {
+                AppNavigation().pushFade(
+                  context,
+                  MassegesView(name: name, image: image, userID: id),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white10,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                width: MediaQuery.of(context).size.width / 3,
+                child: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CustomText(
+                      textfield: true,
+                      text: 'Chat',
+                      fontsize: 10,
+                    ),
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 20.h),
             Expanded(
