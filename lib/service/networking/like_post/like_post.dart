@@ -26,6 +26,7 @@ Future<void> sendLikePost(
         'pubDevUrl': value['pubDevUrl'],
         'shareTime': value['shareTime'],
         'userId': value['userId'],
+        'favorite': value['favorite'],
       });
     });
   } catch (e) {
@@ -60,6 +61,7 @@ Future<void> removeLikePost(
           'pubDevUrl': postData['pubDevUrl'],
           'shareTime': postData['shareTime'],
           'userId': postData['userId'],
+          'favorite': value['favorite'],
         });
         await FirebaseFirestore.instance
             .collection('posts')
@@ -73,6 +75,7 @@ Future<void> removeLikePost(
           'pubDevUrl': postData['pubDevUrl'],
           'shareTime': postData['shareTime'],
           'userId': postData['userId'],
+          'favorite': value['favorite'],
         });
       }
     }

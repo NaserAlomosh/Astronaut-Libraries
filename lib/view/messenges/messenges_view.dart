@@ -1,12 +1,12 @@
 import 'package:astronaut_libraries/service/local/shared_preferences/shared_preferences.dart';
-import 'package:astronaut_libraries/view_model/masseges/masseges_cubit.dart';
+import 'package:astronaut_libraries/view_model/masseges/cubit.dart';
 import 'package:astronaut_libraries/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../service/networking/chats/send_massege/send_massege.dart';
-import '../../view_model/masseges/masseges_state.dart';
+import '../../view_model/masseges/state.dart';
 
 class MassegesView extends StatefulWidget {
   final String name;
@@ -26,8 +26,27 @@ class MassegesView extends StatefulWidget {
   State<MassegesView> createState() => _MassegesViewState();
 }
 
+@override
 class _MassegesViewState extends State<MassegesView> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      // Alternatively, you can use animateTo for a smooth scroll:
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    controller.dispose();
+    super.dispose();
+  }
+
+  ScrollController scrollController = ScrollController();
   TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +79,7 @@ class _MassegesViewState extends State<MassegesView> {
                     children: [
                       Expanded(
                         child: ListView.builder(
+                          controller: scrollController,
                           itemCount: massege.length,
                           itemBuilder: (context, index) => massege[index]
                                       .senderID !=
@@ -130,10 +150,19 @@ class _MassegesViewState extends State<MassegesView> {
                           ),
                           IconButton(
                               color: Colors.amber,
-                              onPressed: () async {
-                                await sendMassege(
+                              onPressed: () {
+                                sendMassege(
                                   receiverID: widget.userID,
                                   text: controller.text,
+                                ).then(
+                                  (value) {
+                                    scrollController.animateTo(
+                                        scrollController
+                                            .position.maxScrollExtent,
+                                        duration:
+                                            const Duration(milliseconds: 100),
+                                        curve: Curves.easeOutSine);
+                                  },
                                 );
                                 controller.text = '';
                               },

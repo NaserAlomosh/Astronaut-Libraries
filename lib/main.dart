@@ -19,7 +19,6 @@ void main() async {
       projectId: "Astronaut-libraries",
     ),
   );
-  //await getMessagesStream();
   await ScreenUtil.ensureScreenSize();
   prefs = await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

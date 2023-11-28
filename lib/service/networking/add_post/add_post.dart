@@ -14,7 +14,7 @@ Future<void> addPost({
   try {
     var userId = getSharedPreferences('id');
     String? postDoc;
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
         .collection('posts')
@@ -46,6 +46,7 @@ Future<void> addPost({
       'likes': [],
       'name': getSharedPreferences('name'),
       'userImage': getSharedPreferences('image'),
+      'favorite': [],
     });
     await FirebaseFirestore.instance.collection('posts').doc(postDoc).set({
       'userId': userId,
@@ -58,6 +59,7 @@ Future<void> addPost({
       'likes': [],
       'name': getSharedPreferences('name'),
       'userImage': getSharedPreferences('image'),
+      'favorite': [],
     });
   } catch (e) {
     print('Add Post Error : $e');

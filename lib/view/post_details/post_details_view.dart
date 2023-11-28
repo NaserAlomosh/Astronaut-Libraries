@@ -66,7 +66,8 @@ class PostDetailsView extends StatelessWidget {
         body: BlocProvider(
           create: (context) => DetalisPostCubit()
             ..getDetalisPostCubit(userId: postUserId, postId: postId)
-            ..userLiked(userId: postUserId, postId: postId),
+            ..userLiked(userId: postUserId, postId: postId)
+            ..userSaved(userId: postUserId, postId: postId),
           child: BlocConsumer<DetalisPostCubit, DetalisPostState>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -105,10 +106,43 @@ class PostDetailsView extends StatelessWidget {
                             ),
                             InkWell(
                               borderRadius: BorderRadius.circular(20.sp),
-                              onTap: () {},
-                              child: const CustomIcons(
-                                icon: Icons.more_horiz,
-                                size: 25,
+                              onTap: () async {
+                                if (context.read<DetalisPostCubit>().isSaved) {
+                                  await context
+                                      .read<DetalisPostCubit>()
+                                      .removeFavoriteCubit(
+                                        postId: postId,
+                                        userId: postUserId,
+                                      );
+                                } else {
+                                  await context
+                                      .read<DetalisPostCubit>()
+                                      .addFavoriteCubit(
+                                        description: context
+                                            .read<DetalisPostCubit>()
+                                            .postDetailsModel!
+                                            .description,
+                                        image: image,
+                                        name: name,
+                                        postId: postId,
+                                        userId: postUserId,
+                                        userImage: profileImage,
+                                      );
+                                }
+                              },
+                              child: BlocConsumer<DetalisPostCubit,
+                                  DetalisPostState>(
+                                listener: (context, state) {},
+                                builder: (context, state) {
+                                  return CustomIcons(
+                                    icon:
+                                        context.read<DetalisPostCubit>().isSaved
+                                            ? Icons.bookmark
+                                            : Icons.bookmark_border,
+                                    color: Colors.white,
+                                    size: 25,
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -135,7 +169,7 @@ class PostDetailsView extends StatelessWidget {
                                 likes: context
                                     .read<DetalisPostCubit>()
                                     .postDetailsModel!
-                                    .likes
+                                    .likes!
                                     .length,
                                 userLike: context
                                     .read<DetalisPostCubit>()
@@ -151,26 +185,7 @@ class PostDetailsView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       SizedBox(height: 5.h),
-                      // Padding(
-                      //   padding: EdgeInsets.symmetric(
-                      //     horizontal: 5.w,
-                      //   ),
-                      //   child: CustomText(
-                      //     text: context
-                      //             .read<DetalisPostCubit>()
-                      //             .postDetailsModel!
-                      //             .likes
-                      //             .isEmpty
-                      //         ? 'like'
-                      //         : 'likes ${context.read<DetalisPostCubit>().postDetailsModel!.likes.length.toString()}',
-                      //     fontsize: 18,
-                      //     textfield: true,
-                      //   ),
-                      // ),
-
-                      //
                       Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 5.w,
@@ -190,8 +205,9 @@ class PostDetailsView extends StatelessWidget {
                               .description
                               .toString(),
                           style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
-                              fontSize: 14.sp),
+                            color: Colors.white.withOpacity(0.8),
+                            fontSize: 14.sp,
+                          ),
                           trimLines: 2,
                           trimMode: TrimMode.Line,
                           trimCollapsedText: ' Show more',
@@ -217,7 +233,9 @@ class PostDetailsView extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 5.w, vertical: 5.h),
+                          horizontal: 5.w,
+                          vertical: 5.h,
+                        ),
                         child: const CustomText(
                           text: 'View all 100 coments',
                           fontsize: 18,
@@ -269,7 +287,7 @@ class PostDetailsView extends StatelessWidget {
                                       likeNumber: context
                                           .read<DetalisPostCubit>()
                                           .postDetailsModel!
-                                          .likes
+                                          .likes!
                                           .length,
                                       postId: postId,
                                       postImage: image,

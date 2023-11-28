@@ -5,25 +5,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 List<PostModel>? postsModel;
 
+bool? showMore;
+
 class PostHomeCubit extends Cubit<PostHomeState> {
   PostHomeCubit() : super(PostHomeInitial());
 
-  bool? showMore;
   Future<void> getPostHomeCubit() async {
-    //  List<PostModel> data = [];
     try {
-      // ;
+      //
       if (postsCount <= 4) {
         showMore = true;
       } else {
         showMore = false;
       }
       if (postsModel == null) {
-        //data =
         postsModel = await getPostsHome();
-
         postsModel!.sort((a, b) => b.shareTime!.compareTo(a.shareTime!));
-
+        emit(PostHomeSucsses());
         print('POSTS HOME CUBIT IN VIEW_MODEL FILE SUCSSES');
       }
     } catch (e) {

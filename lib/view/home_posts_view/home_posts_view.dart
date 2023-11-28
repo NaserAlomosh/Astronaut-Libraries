@@ -209,7 +209,7 @@ class _HomePostsViewState extends State<HomePostsView> {
                                 }
                               },
                               builder: (context, state) {
-                                return context.read<PostHomeCubit>().showMore!
+                                return showMore!
                                     ? CustomTextButton(
                                         onPressed: () {
                                           context
